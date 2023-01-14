@@ -1,8 +1,8 @@
-"""new DB with delete cascade
+"""create owners table
 
-Revision ID: fef1db20abc7
+Revision ID: 46fa8625d66b
 Revises: 
-Create Date: 2023-01-13 19:35:03.421889
+Create Date: 2023-01-13 18:31:04.612499
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fef1db20abc7'
+revision = '46fa8625d66b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('genre', sa.String(length=255), nullable=False),
     sa.Column('cover_photo', sa.String(length=255), nullable=True),
     sa.Column('song_file', sa.String(length=255), nullable=True),
-    sa.ForeignKeyConstraint(['username'], ['users.username'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['username'], ['users.username'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('comments',

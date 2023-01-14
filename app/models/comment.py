@@ -11,8 +11,8 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'),ondelete='CASCADE'),  nullable=False)
     comment = db.Column(db.String(500))
 
-    song = db.relationship('Song', back_populates='comments')
-    user = db.relationship('User', back_populates='comments')
+    songs = db.relationship('Song', back_populates='comments')
+    users = db.relationship('User', back_populates='comments')
 
     def to_dict(self):
         return{
