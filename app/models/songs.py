@@ -8,7 +8,7 @@ class Song(db.Model):
     __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String, db.ForeignKey(add_prefix_for_prod('users.username')), nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   song_title = db.Column(db.String(255), nullable=False)
   genre = db.Column(db.String(255), nullable=False)
   cover_photo = db.Column(db.String(255), nullable=True)
@@ -20,7 +20,7 @@ class Song(db.Model):
   def to_dict(self):
     return {
       'id': self.id,
-      'username': self.username,
+      'user_id': self.user_id,
       'song_title': self.song_title,
       'genre': self.genre,
       'cover_photo': self.cover_photo,
