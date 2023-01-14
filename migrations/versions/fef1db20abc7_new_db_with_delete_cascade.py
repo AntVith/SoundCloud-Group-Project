@@ -1,8 +1,8 @@
-"""create all models and migrations
+"""new DB with delete cascade
 
-Revision ID: 26acc87e39f3
+Revision ID: fef1db20abc7
 Revises: 
-Create Date: 2023-01-13 19:07:21.645244
+Create Date: 2023-01-13 19:35:03.421889
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '26acc87e39f3'
+revision = 'fef1db20abc7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('genre', sa.String(length=255), nullable=False),
     sa.Column('cover_photo', sa.String(length=255), nullable=True),
     sa.Column('song_file', sa.String(length=255), nullable=True),
-    sa.ForeignKeyConstraint(['username'], ['users.username'], ),
+    sa.ForeignKeyConstraint(['username'], ['users.username'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('comments',
@@ -46,15 +46,15 @@ def upgrade():
     sa.Column('song_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('comment', sa.String(length=500), nullable=True),
-    sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('songs', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ),
-    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('users', 'songs')
     )
     # ### end Alembic commands ###

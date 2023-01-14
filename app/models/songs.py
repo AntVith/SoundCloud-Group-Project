@@ -8,7 +8,7 @@ class Song(db.Model):
     __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.username')), nullable=False)
+  username = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.username'), ondelete='CASCADE'),nullable=False)
   song_title = db.Column(db.String(255), nullable=False)
   genre = db.Column(db.String(255), nullable=False)
   cover_photo = db.Column(db.String(255), nullable=True)
