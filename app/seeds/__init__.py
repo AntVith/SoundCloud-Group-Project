@@ -21,8 +21,8 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_likes()
         undo_comments()
-        undo_users()
         undo_songs()
+        undo_users()
     seed_users()
     seed_songs()
     seed_comments()
