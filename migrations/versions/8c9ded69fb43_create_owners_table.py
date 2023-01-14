@@ -1,8 +1,8 @@
 """create owners table
 
-Revision ID: 46fa8625d66b
+Revision ID: 8c9ded69fb43
 Revises: 
-Create Date: 2023-01-13 18:31:04.612499
+Create Date: 2023-01-14 11:29:28.794805
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '46fa8625d66b'
+revision = '8c9ded69fb43'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,7 +33,7 @@ def upgrade():
     )
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.Integer(), nullable=False),
+    sa.Column('username', sa.String(), nullable=False),
     sa.Column('song_title', sa.String(length=255), nullable=False),
     sa.Column('genre', sa.String(length=255), nullable=False),
     sa.Column('cover_photo', sa.String(length=255), nullable=True),
