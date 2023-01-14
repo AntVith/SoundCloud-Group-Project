@@ -48,7 +48,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
 
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -60,7 +60,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
 
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
@@ -70,7 +70,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('users', 'songs')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
 
     # ### end Alembic commands ###
 
