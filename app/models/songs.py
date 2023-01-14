@@ -21,7 +21,7 @@ class Song(db.Model):
     return {
       'id': self.id,
       'username': self.username,
-      'song_title': self.genre,
+      'song_title': self.song_title,
       'genre': self.genre,
       'cover_photo': self.cover_photo,
       'song_file': self.song_file
