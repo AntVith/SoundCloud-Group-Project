@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getOneSong } from '../store/songs';
 import { getAllComments } from '../store/comments';
+import { getLikesBySongId } from '../store/likes';
 import { useParams } from 'react-router-dom';
 
 
@@ -11,19 +12,20 @@ const SongDetails = () => {
   const songData = Object.values(songObj)
   const commentObj = useSelector(state => state.comments.comments)
   const comments = Object.values(commentObj)
-
+  const likes = useSelector(state => state.likes.likes)
   const {id} = useParams()
 
   useEffect(() => {
     dispatch(getOneSong(id))
     dispatch(getAllComments(id))
+    dispatch(getLikesBySongId(id))
   }, [id, dispatch])
 
   if (!songData.length){
     return null
   }
+ console.log(likes)
 
- 
 
   const song = songData[0]
 
@@ -40,7 +42,7 @@ const SongDetails = () => {
           comments.map(comment => (
 
 
-               <div>{comment.comment}</div>
+               <div>comment: {comment.comment}</div>
 
 
 
@@ -48,6 +50,7 @@ const SongDetails = () => {
         }
 
       </div>
+      <div>likes: {likes.totalLikes}</div>
 
     </section>
   );
