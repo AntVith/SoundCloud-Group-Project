@@ -1,11 +1,27 @@
 // import {csrFetch} from './'
 
 const GET_ALL_SONGS = 'song/GET_ALL_SONGS'
+const GET_ONE_SONG = 'song/GET_ONE_SONG'
 
 const getAll = (songs) => ({
     type: GET_ALL_SONGS,
     songs
 })
+const getOne = (song) => ({
+    type:GET_ONE_SONG,
+    song
+})
+
+export const getOneSong = (id) => async(dispatch) => {
+    const response = await fetch(`/api/songs/${id}`)
+
+    if(response.ok){
+        const song = await response.json()
+        dispatch(getOne(song))
+        return song
+    }
+    return response
+}
 
 export const getAllSongs = () => async (dispatch) => {
     const response = await fetch(`/api/songs`);
@@ -31,6 +47,11 @@ const songsReducer = (state = initialState, action) => {
           });
 
           return newState;
+        }
+        case GET_ONE_SONG:{
+            const newState = { allSongs: {}, singleSong: {} }
+            newState.singleSong = action.song
+            return newState
         }
 
         default:

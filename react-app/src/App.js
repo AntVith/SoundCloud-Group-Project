@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from "./components/HomePage";
+import SongDetails from './components/SongDetails'
 import { authenticate } from './store/session';
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/songs/:id' exact = {true}>
+        <SongDetails />
+        </Route>
         <Route path='/' exact={true} >
         <HomePage />
         </Route>
