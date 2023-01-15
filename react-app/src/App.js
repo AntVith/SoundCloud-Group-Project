@@ -20,6 +20,8 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+  console.log('loaded', loaded)
+  console.log('bonjour')
 
   if (!loaded) {
     return null;
@@ -29,11 +31,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route
-          exact path="/"
-        >
-          <HomePage />
-        </Route>
+
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -47,7 +45,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <HomePage />
         </Route>
       </Switch>
     </BrowserRouter>
