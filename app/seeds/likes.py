@@ -5,10 +5,12 @@ def seed_likes():
     like_1 = likes.insert().values(users=1, songs=2)
     like_2 = likes.insert().values(users=2, songs=3)
     like_3 = likes.insert().values(users=3, songs=1)
+    like_4 = likes.insert().values(users=2, songs=1)
 
     db.session.execute(like_1)
     db.session.execute(like_2)
     db.session.execute(like_3)
+    db.session.execute(like_4)
     db.session.commit()
 
 
