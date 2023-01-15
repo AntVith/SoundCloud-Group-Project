@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import Song
+from app.models import Song, Comment
 
 song_routes = Blueprint('songs', __name__)
 
@@ -10,6 +10,12 @@ def all_songs():
     #print(list(songs))
 
     return {'songs' :[song.to_dict() for song in songs]} , 200
+
+@song_routes.route('/<int:id>/comments')
+def all_comments(id):
+    comments = Comment.query.filter(Comment.song_id == id)
+
+    return {'comments' :[comment.to_dict() for comment in comments]} , 200
 
 @song_routes.route('/<int:id>')
 def song_by_ID(id):
