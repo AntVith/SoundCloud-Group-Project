@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
+from flask_login import current_user
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage

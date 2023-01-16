@@ -1,20 +1,19 @@
-"""please work
+"""create owners table
 
-Revision ID: df5a95f879b1
+Revision ID: db287c546368
 Revises:
-Create Date: 2023-01-15 19:28:22.731546
+Create Date: 2023-01-15 22:10:15.333114
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'df5a95f879b1'
+revision = 'db287c546368'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +36,6 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -50,7 +48,6 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
-
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
@@ -62,7 +59,6 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('songs', sa.Integer(), nullable=False),
