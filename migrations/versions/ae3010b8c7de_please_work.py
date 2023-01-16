@@ -1,8 +1,8 @@
-"""new DB setup
+"""please work
 
-Revision ID: 6361040d9597
+Revision ID: ae3010b8c7de
 Revises:
-Create Date: 2023-01-15 19:00:45.257237
+Create Date: 2023-01-15 19:28:22.731546
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '6361040d9597'
+revision = 'ae3010b8c7de'
 down_revision = None
 branch_labels = None
 depends_on = None
