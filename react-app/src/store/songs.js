@@ -40,7 +40,7 @@ export const getAllSongs = () => async (dispatch) => {
   };
 
   export const createSong = (payload) => async (dispatch) => {
-    const response = await csrfFetch('/api/songs', {
+    const response = await fetch('/api/songs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
