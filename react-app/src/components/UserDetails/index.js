@@ -36,22 +36,23 @@ function User() {
 
   return (
     <>
-      <ul>
-        <li>
+       <div>
+        <div>
           <strong>User Id</strong> {userId}
-        </li>
-        <li>
+        </div>
+        <div>
           <strong>Username</strong> {user.username}
-        </li>
-        <li>
+        </div>
+        <div>
           <strong>Email</strong> {user.email}
-        </li>
-        <li>
+        </div>
+        <div>
           {userSongs.map(eachSong => (
             <div key={eachSong.id}>{eachSong.song_title}</div>
           ))}
-        </li>
-      </ul>
+        </div>
+        </div>
+
       <OpenModalButton
         modalComponent={<EditUserModal user={{ user }} />}
         buttonText={'Edit'}
