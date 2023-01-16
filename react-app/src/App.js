@@ -21,8 +21,7 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
-  console.log('loaded', loaded)
-  console.log('bonjour')
+
 
   if (!loaded) {
     return null;
@@ -30,7 +29,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar loaded={loaded} />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />

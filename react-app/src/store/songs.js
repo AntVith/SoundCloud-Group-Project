@@ -39,17 +39,19 @@ export const getAllSongs = () => async (dispatch) => {
     return response
   };
 
-  export const createSong = (payload) => async (dispatch) => {
-    const response = await fetch('/api/songs', {
+  export const createSong = (newSong) => async (dispatch) => {
+    console.log('NewSong',newSong)
+    const response = await fetch('/api/songs/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(newSong),
     })
 
     if (response.ok) {
-      const newSong = await response.json();
-      dispatch(postSong(newSong));
-      return newSong;
+      const createdNewSong = await response.json();
+      dispatch(postSong(createdNewSong));
+      console.log('CreatedSOng',createdNewSong)
+      return createdNewSong;
     }
 
   }
