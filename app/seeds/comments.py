@@ -8,9 +8,9 @@ def seed_comments():
     comment2 = Comment(
         song_id=2,  username= 'marnie', comment = 'Just terrible')
     comment3 = Comment(
-        song_id=3,  username= 'boobie', comment = 'Pretty average')
+        song_id=3,  username= 'bobbie', comment = 'Pretty average')
     comment4 = Comment(
-        song_id=3,  username= 'boobie', comment = 'Changed my mind, terrible')
+        song_id=3,  username= 'bobbie', comment = 'Changed my mind, terrible')
     comment5 = Comment(
         song_id=3,  username= 'marnie', comment = 'Didn\'t listen')
 
