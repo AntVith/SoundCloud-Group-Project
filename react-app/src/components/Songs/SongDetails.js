@@ -24,7 +24,6 @@ const SongDetails = () => {
   if (!songData.length){
     return null
   }
- console.log(likes)
 
 
   const song = songData[0]
