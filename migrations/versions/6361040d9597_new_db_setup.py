@@ -1,8 +1,8 @@
-"""update comments and likes
+"""new DB setup
 
-Revision ID: b274e51c8460
+Revision ID: 6361040d9597
 Revises:
-Create Date: 2023-01-15 15:34:57.169035
+Create Date: 2023-01-15 19:00:45.257237
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'b274e51c8460'
+revision = '6361040d9597'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -70,7 +70,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('users', 'songs')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
