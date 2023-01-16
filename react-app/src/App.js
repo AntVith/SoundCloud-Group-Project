@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+import LoginForm from './components/auth/LoginForm'
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-import HomePage from "./components/HomePage";
-import SongDetails from './components/SongDetails'
+import UsersList from './components/Users';
+import User from './components/UserDetails';
+import HomePage from "./components/Homepage";
+import SongDetails from './components/Songs/SongDetails'
 import { authenticate } from './store/session';
 
 function App() {
@@ -21,18 +21,16 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
-  console.log('loaded', loaded)
-  console.log('bonjour')
+
 
   if (!loaded) {
     return null;
   }
 
   return (
-    <BrowserRouter>
-      <NavBar />
+    <>
+      <NavBar loaded={loaded} />
       <Switch>
-
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -52,7 +50,7 @@ function App() {
         <HomePage />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 

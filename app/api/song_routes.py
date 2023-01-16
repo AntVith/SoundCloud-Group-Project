@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Song, Comment, likes, db
+from ..forms.song_form import SongForm
+from flask_login import current_user
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage
@@ -10,12 +12,38 @@ def all_songs():
     #print(list(songs))
 
     return {'songs' :[song.to_dict() for song in songs]} , 200
+
+
+#create a song
+@song_routes.route('/', methods = ['POST'])
+def new_song():
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_song = Song()
+        form.populate_obj(new_song)
+
+        db.session.add(new_song)
+        db.session.commit()
+        return new_song.to_dict(), 201
+
+    if form.errors:
+        return {
+            "errors": form.errors
+        }, 400
+
+
+
 # get all comments based on songID for sond detials page
 @song_routes.route('/<int:id>/comments')
 def all_comments(id):
     comments = Comment.query.filter(Comment.song_id == id)
 
     return {'comments' :[comment.to_dict() for comment in comments]} , 200
+
+
+
 #get a song by ID for song details page
 @song_routes.route('/<int:id>')
 def song_by_ID(id):
