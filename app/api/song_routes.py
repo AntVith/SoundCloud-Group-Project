@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Song, Comment, likes, db
-from .. forms.song_form import SongForm
+from ..forms.song_form import SongForm
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage
@@ -14,7 +14,7 @@ def all_songs():
 
 
 #create a song
-@song_routes.route('/')
+@song_routes.route('/', methods = ['POST'])
 def new_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
