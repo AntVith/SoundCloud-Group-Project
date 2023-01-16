@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllSongs } from '../store/songs';
+import { getAllSongs } from '../../store/songs'
 import { NavLink } from 'react-router-dom';
 import './homepage.css'
 
@@ -10,8 +10,6 @@ const HomePage = () => {
   const songsObj = useSelector(state => state.songs.allSongs);
   const songs = Object.values(songsObj)
 
-  console.log('obj', songsObj)
-  console.log('hola')
 
   useEffect(() => {
     dispatch(getAllSongs())

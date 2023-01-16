@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getOneSong } from '../store/songs';
-import { getAllComments } from '../store/comments';
-import { getLikesBySongId } from '../store/likes';
+import { getOneSong } from '../../store/songs'
+import { getAllComments } from '../../store/comments';
+import { getLikesBySongId } from '../../store/likes';
 import { useParams } from 'react-router-dom';
 
 

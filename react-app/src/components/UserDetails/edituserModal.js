@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch} from "react-redux";
-import { useModal } from "../context/Modal";
+import { useDispatch } from "react-redux";
+import {useModal} from '../../context/Modal'
 import { useHistory } from "react-router-dom";
 // import { updateASpot } from "../store/spots";
 
 
-function EditUserModal({user}) {
+function EditUserModal({ user }) {
   const dispatch = useDispatch();
   const history = useHistory()
 
@@ -23,7 +23,7 @@ function EditUserModal({user}) {
   return (
     <form>
       <div>
-          <h1>Update Your Profile</h1>
+        <h1>Update Your Profile</h1>
         <div>
           <input
             type='text'
@@ -44,7 +44,7 @@ function EditUserModal({user}) {
           />
         </div>
         <div>
-            <input
+          <input
             type='text'
             onChange={(e) => setFirst_name(e.target.value)}
             value={first_name}
@@ -53,7 +53,7 @@ function EditUserModal({user}) {
           />
         </div>
         <div>
-            <input
+          <input
             type='text'
             onChange={(e) => setLast_name(e.target.value)}
             value={last_name}
@@ -62,7 +62,7 @@ function EditUserModal({user}) {
           />
         </div>
         <div>
-            <input
+          <input
             type='text'
             onChange={(e) => setProfile_photo(e.target.value)}
             value={profile_photo}
@@ -71,7 +71,7 @@ function EditUserModal({user}) {
           />
         </div>
         <div>
-            <input
+          <input
             type='text'
             onChange={(e) => setUsername(e.target.value)}
             value={username}
@@ -80,11 +80,11 @@ function EditUserModal({user}) {
           />
         </div>
         <div>
-          <button className="newHome-button"  type='submit'>Submit</button>
+          <button className="newHome-button" type='submit'>Submit</button>
         </div>
-        </div>
-      </form>
-    )
+      </div>
+    </form>
+  )
 }
 
 

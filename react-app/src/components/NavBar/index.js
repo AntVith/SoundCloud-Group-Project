@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {useSelector} from 'react-redux'
-import OpenModalButton from '../components/OpenModalButton/index'
-// import { useHistory } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import UploadNewSong from './UploadSongModal';
+import OpenModalButton from '../OpenModalButton'
+import LogoutButton from '../auth/LogoutButton'
+import UploadNewSong from '../UploadSongModal';
 
-import './homepage.css'
+// import '../Homepage/homepage.css'
 
 
 function NavBar({loaded}) {

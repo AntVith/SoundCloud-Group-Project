@@ -38,7 +38,7 @@ function UploadNewSong() {
     )
     if(createdSong) {
       (closeModal)
-      (history.push('/'))
+      (history.push(`/songs/${createdSong.id}`))
     }
   }
 
