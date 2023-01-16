@@ -29,10 +29,9 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
       <Switch>
-
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -52,7 +51,7 @@ function App() {
         <HomePage />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 

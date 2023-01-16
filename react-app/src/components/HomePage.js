@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllSongs } from '../store/songs';
 import { NavLink } from 'react-router-dom';
-// import './HomePage.css';
+import './homepage.css'
 
 
 const HomePage = () => {
@@ -21,7 +21,7 @@ const HomePage = () => {
 
   return (
     <section>
-      <div id= 'main-container'>
+      <div className='body' id= 'main-container'>
         {
           songs.map(song => (
 
