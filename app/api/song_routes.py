@@ -65,6 +65,20 @@ def post_comment(id):
             "errors": form.errors
         }, 400
 
+@song_routes.route('/comments/<int:comment_id>', methods=['DELETE'])
+@login_required
+def delete_comment(comment_id):
+
+    print('comment_id', comment_id)
+    comment = Comment.query.get(comment_id)
+    print('comment------------', comment)
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return {"message": 'successfully deleted'}
+
+
 
 
 #get a song by ID for song details page

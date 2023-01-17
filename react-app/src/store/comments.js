@@ -1,5 +1,6 @@
 const GET_ALL_COMMENTS = 'comment/GET_ALL_COMMENTS'
 const POST_COMMENT = 'comment/POST_COMMENT'
+const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 
 const getAll = (comments) => ({
     type: GET_ALL_COMMENTS,
@@ -10,6 +11,24 @@ const postComment = (comment) => ({
   type: POST_COMMENT,
   comment
 })
+const deleteComment = (commentId) => ({
+  type: DELETE_COMMENT,
+  commentId
+})
+
+export const deleteAComment = (commentId) => async(dispatch) => {
+  console.log('2')
+  const response = await fetch(`/api/songs/comments/${commentId}`, {
+    method: 'DELETE'
+  })
+  console.log('response', response)
+  if (response.ok){
+    const deletionResponse = await response.json()
+
+    dispatch(deleteComment(commentId))
+    return deletionResponse
+  }
+}
 
 export const postAComment = (id, payload) => async(dispatch) => {
   const response = await fetch(`/api/songs/${id}/comments/new`, {
@@ -60,6 +79,13 @@ export const getAllComments = (id) => async (dispatch) => {
           const newState = {...state}
           const newObject = {...state.comments}
           newObject[action.comment.id] = action.comment
+          newState.comments = newObject
+          return newState
+        }
+        case DELETE_COMMENT:{
+          const newState = {...state}
+          const newObject = {...state.comments}
+          delete newObject[action.commentId]
           newState.comments = newObject
           return newState
         }

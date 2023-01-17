@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOneSong } from '../../store/songs'
-import { getAllComments, postAComment } from '../../store/comments';
+import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -49,7 +49,16 @@ const SongDetails = () => {
       (history.push(`/songs/${id}`))
     }
   }
-
+  let message = ''
+  const handleDeletion = async (commentId) => {
+    console.log('1')
+    const response = await dispatch(deleteAComment(commentId))
+    console.log('message', message)
+    if (response){
+      message = response.message
+    }
+  }
+console.log(message)
 
   const song = songData[0]
 
@@ -81,13 +90,22 @@ const SongDetails = () => {
             </div>
           }
 
+          {message.length > 0 &&
+            <div>{message}</div>
+          }
 
       <div id = 'comment-container'>
       {
           comments.map(comment => (
 
-
-               <div>comment: {comment.comment}</div>
+              <div>
+                <div>comment: {comment.comment}</div>
+                {userObj.username === comment.username &&
+                  <button
+                onClick={() => handleDeletion(comment.id)}
+                >Delete
+                </button> }
+               </div>
 
 
 
