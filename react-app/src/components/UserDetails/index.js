@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useInsertionEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
@@ -12,9 +13,13 @@ function User() {
   const songs = useSelector(state => state.songs.allSongs)
   const songsArr = Object.values(songs)
   const userSongs = songsArr.filter(song => song.user_id === Number(userId))
+  const userInfo = useSelector(state => state.session.user)
+  const userData = Object.values(userInfo)
 
-  // console.log('array of songs',songsArr)
-  // console.log("TEST", songs)
+
+  if(user !== userInfo){
+    setUser(userInfo)
+  }
 
   useEffect(() => {
     if (!userId) {

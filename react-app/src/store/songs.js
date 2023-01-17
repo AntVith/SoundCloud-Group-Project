@@ -33,14 +33,12 @@ export const getAllSongs = () => async (dispatch) => {
     const response = await fetch(`/api/songs`);
     if (response.ok) {
       const songs = await response.json();
-      console.log('songs', songs)
       dispatch(getAll(songs));
     }
     return response
   };
 
   export const createSong = (newSong) => async (dispatch) => {
-    console.log('NewSong',newSong)
     const response = await fetch('/api/songs/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -50,7 +48,6 @@ export const getAllSongs = () => async (dispatch) => {
     if (response.ok) {
       const createdNewSong = await response.json();
       dispatch(postSong(createdNewSong));
-      console.log('CreatedSOng',createdNewSong)
       return createdNewSong;
     }
 
@@ -63,7 +60,6 @@ const songsReducer = (state = initialState, action) => {
         case GET_ALL_SONGS: {
           const newState = { allSongs: {}, singleSong: {} }
           action.songs.songs.forEach(song => {
-            console.log('song', song)
             newState.allSongs[song.id] = song
           });
 

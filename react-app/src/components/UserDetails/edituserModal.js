@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {useModal} from '../../context/Modal'
 import { useHistory } from "react-router-dom";
+import { updateAUser } from "../../store/session";
 // import { updateASpot } from "../store/spots";
 
 
@@ -9,21 +10,58 @@ function EditUserModal({ user }) {
   const dispatch = useDispatch();
   const history = useHistory()
 
+  const [bio, setBio] = useState(user.user.bio);
+  const [email, setEmail] = useState(user.user.email);
+  const [first_name, setFirst_name] = useState(user.user.first_name);
+  const [last_name, setLast_name] = useState(user.user.last_name);
+  const [profile_photo, setProfile_photo] = useState(user.user.profile_photo);
+  const [username, setUsername] = useState(user.user.username);
+  const [errors, setErrors] = useState([])
 
-  const [bio, setBio] = useState();
-  const [email, setEmail] = useState();
-  const [first_name, setFirst_name] = useState();
-  const [last_name, setLast_name] = useState();
-  const [profile_photo, setProfile_photo] = useState();
-  const [username, setUsername] = useState();
+
+  const {closeModal} = useModal()
+
+ const userId = user.user.id
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setErrors([])
+
+    const payload = {
+      userId,
+      bio,
+      email,
+      first_name,
+      last_name,
+      profile_photo,
+      username
+    }
 
 
+    const editedUser = await dispatch(updateAUser(payload, userId))
+    .catch(
+      async (res) => {
+        const data = await res.json()
+        if(data && data.errors) setErrors(data.errors)
+      }
+    )
+
+    if(editedUser) {
+      (closeModal)
+      (history.push(`/users/${userId}`))
+    }
+  }
 
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <h1>Update Your Profile</h1>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <div>
           <input
             type='text'
