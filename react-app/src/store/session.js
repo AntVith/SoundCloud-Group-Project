@@ -126,8 +126,8 @@ export default function reducer(state = initialState, action) {
       return { user: null }
     case UPDATE_USER:
       const newStateCopy = {...state}
-      const newUserUpdated = {...state.user}
-      newUserUpdated[action.updatedUser.id] = action.updatedUser
+      const newUserUpdated = action.updatedUser
+      // newUserUpdated =
       newStateCopy.user = newUserUpdated
       return newStateCopy
     default:

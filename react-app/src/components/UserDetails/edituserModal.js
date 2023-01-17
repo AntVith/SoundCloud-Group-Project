@@ -28,7 +28,7 @@ function EditUserModal({ user }) {
     setErrors([])
 
     const payload = {
-      ...user,
+      userId,
       bio,
       email,
       first_name,
@@ -38,9 +38,10 @@ function EditUserModal({ user }) {
     }
 
 
-    const editedUser = await dispatch(updateAUser(payload, userId)).catch(
+    const editedUser = await dispatch(updateAUser(payload, userId))
+    .catch(
       async (res) => {
-        const data = await res.join()
+        const data = await res.json()
         if(data && data.errors) setErrors(data.errors)
       }
     )
