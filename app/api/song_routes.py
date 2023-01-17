@@ -97,19 +97,18 @@ def all_likes(id):
 
 
 # create like for a song by song-id
-@song_routes.route('/<int:id>/likes/', methods=['POST'])
+@song_routes.route('/<int:id>/likes', methods=['POST'])
 def post_like(id):
     all_likes = db.session.execute(db.select(likes)).fetchall()
-    print(all_likes)
 
-    # filtered = filter(lambda like: like[1] == id, all_likes)
+    filtered = filter(lambda like: like[1] == id, all_likes)
 
-    # # turns filtered data to a dict
-    # dict_version = dict(filtered)
+    # turns filtered data to a dict
+    dict_version = dict(filtered)
 
-    # #gets the values from that dict, view object only tho
-    # valuesI = dict_version.values()
+    #gets the values from that dict, view object only tho
+    valuesI = dict_version.values()
 
-    # # turns the view object to a list then sums the length(which is total amount of likes)
-    # total_likes = len(list(valuesI))
-    return {'likes': all_likes}, 200
+    # turns the view object to a list then sums the length(which is total amount of likes)
+    new_total_likes = len(list(valuesI)) + 1
+    return {'likes': new_total_likes}, 200
