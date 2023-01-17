@@ -67,14 +67,20 @@ const SongDetails = () => {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-      <input
-      type='text'
-      onChange={(e) => setNewComment(e.target.value)}
-      value={newComment}
-      placeholder='Write a Comment'></input>
-      <button
-      onClick={handleSubmit}
-      >Post Comment</button>
+
+          {userObj &&
+          <div>
+            <input
+            type='text'
+            onChange={(e) => setNewComment(e.target.value)}
+            value={newComment}
+            placeholder='Write a Comment'></input>
+            <button
+            onClick={handleSubmit}
+            >Post Comment</button>
+            </div>
+          }
+
 
       <div id = 'comment-container'>
       {
