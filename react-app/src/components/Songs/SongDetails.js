@@ -87,7 +87,7 @@ const SongDetails = () => {
           comments.map(comment => (
 
 
-               <div>comment: {comment.comment}</div>
+            <div key= {comment.id}>comment: {comment.comment}</div>
 
 
 

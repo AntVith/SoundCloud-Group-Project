@@ -3,7 +3,6 @@ from flask_login import login_required
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
-from flask_login import current_user
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage
@@ -95,3 +94,22 @@ def all_likes(id):
     # turns the view object to a list then sums the length(which is total amount of likes)
     total_likes = len(list(valuesI))
     return {'likes': total_likes}, 200
+
+
+# create like for a song by song-id
+@song_routes.route('/<int:id>/likes/', methods=['POST'])
+def post_like(id):
+    all_likes = db.session.execute(db.select(likes)).fetchall()
+    print(all_likes)
+
+    # filtered = filter(lambda like: like[1] == id, all_likes)
+
+    # # turns filtered data to a dict
+    # dict_version = dict(filtered)
+
+    # #gets the values from that dict, view object only tho
+    # valuesI = dict_version.values()
+
+    # # turns the view object to a list then sums the length(which is total amount of likes)
+    # total_likes = len(list(valuesI))
+    return {'likes': all_likes}, 200
