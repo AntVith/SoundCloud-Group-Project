@@ -4,6 +4,8 @@ from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
 from flask_login import current_user
+from app.aws_functionality import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage
@@ -17,22 +19,52 @@ def all_songs():
 
 #create a song
 @song_routes.route('/', methods = ['POST'])
+@login_required
 def new_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        new_song = Song()
-        form.populate_obj(new_song)
+    if "song_file" not in request.files:
+        return {"errors": "image required"}, 400
 
-        db.session.add(new_song)
-        db.session.commit()
-        return new_song.to_dict(), 201
+    song_file = request.files["song_file"]
 
-    if form.errors:
-        return {
-            "errors": form.errors
-        }, 400
+    if not allowed_file(song_file.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    song_file.filename = get_unique_filename(song_file.filename)
+
+    upload = upload_file_to_s3(song_file)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+
+    # flask_login allows us to get the current user from the request
+    new_song = Song(song_file=url)
+    db.session.add(new_song)
+    db.session.commit()
+    return {"url": url}
+
+
+
+
+    # if form.validate_on_submit():
+    #     new_song = Song()
+    #     form.populate_obj(new_song)
+
+    #     db.session.add(new_song)
+    #     db.session.commit()
+    #     return new_song.to_dict(), 201
+
+    # if form.errors:
+    #     return {
+    #         "errors": form.errors
+    #     }, 400
 
 
 
