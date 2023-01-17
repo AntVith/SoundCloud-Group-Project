@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
+from ..forms.comment_form import CommentForm
 from flask_login import current_user
 
 song_routes = Blueprint('songs', __name__)
@@ -41,6 +42,28 @@ def all_comments(id):
     comments = Comment.query.filter(Comment.song_id == id)
 
     return {'comments' :[comment.to_dict() for comment in comments]} , 200
+
+@song_routes.route('/<int:id>/comments/new', methods=['POST'])
+@login_required
+def post_comment(id):
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        new_comment = Comment()
+        form.populate_obj(new_comment)
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return new_comment.to_dict(), 200
+
+    if form.errors:
+        return {
+            "errors": form.errors
+        }, 400
 
 
 

@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getOneSong } from '../../store/songs'
-import { getAllComments } from '../../store/comments';
+import { getAllComments, postAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 
 const SongDetails = () => {
@@ -14,6 +14,11 @@ const SongDetails = () => {
   const comments = Object.values(commentObj)
   const likes = useSelector(state => state.likes.likes)
   const {id} = useParams()
+  const userObj = useSelector(state => state.session.user)
+  const history = useHistory()
+
+  const [newComment, setNewComment] = useState('')
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     dispatch(getOneSong(id))
@@ -23,6 +28,26 @@ const SongDetails = () => {
 
   if (!songData.length){
     return null
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const payload = {
+      'song_id': Number(id),
+      'username': userObj.username,
+      'comment': newComment
+    }
+    const postedComment = await dispatch(postAComment(id, payload))
+    .catch(
+      async (res) => {
+        const data = await res.json()
+        if(data && data.errors) setErrors(data.errors)
+      }
+    )
+    if(postedComment) {
+      (history.push(`/songs/${id}`))
+    }
   }
 
 
@@ -36,6 +61,27 @@ const SongDetails = () => {
         <div>{song.song_title}</div>
         <div>{song.song_file}</div>
       </div>
+
+      <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+
+          {userObj &&
+          <div>
+            <input
+            type='text'
+            onChange={(e) => setNewComment(e.target.value)}
+            value={newComment}
+            placeholder='Write a Comment'></input>
+            <button
+            onClick={handleSubmit}
+            >Post Comment</button>
+            </div>
+          }
+
+
       <div id = 'comment-container'>
       {
           comments.map(comment => (
