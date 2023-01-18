@@ -24,9 +24,9 @@ const handleSubmit = async (e) => {
 
     const payload = {
         comment,
-        commentId,
-        currentSong,
-        currentUser
+        'id': commentId,
+        'song_id': currentSong,
+        'username': currentUser
 
       }
       const editedComment = await dispatch(updateAComment(payload, commentId))

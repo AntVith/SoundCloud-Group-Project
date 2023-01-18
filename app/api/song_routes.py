@@ -71,7 +71,7 @@ def post_comment(id):
 @login_required
 def update_comment(comment_id):
 
-
+    # new_obj = {}
     current_comment = Comment.query.get(comment_id)
 
     form = CommentForm()
@@ -79,11 +79,11 @@ def update_comment(comment_id):
 
     if form.validate_on_submit():
         form.populate_obj(current_comment)
-
+        # current_comment = new_obj
         db.session.add(current_comment)
         db.session.commit()
         return current_comment.to_dict(), 201
-    return 'hi'
+
 
 
 #delete comment
