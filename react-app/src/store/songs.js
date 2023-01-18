@@ -67,8 +67,9 @@ const songsReducer = (state = initialState, action) => {
           return newState;
         }
         case GET_ONE_SONG:{
-            const newState = { allSongs: {}, singleSong: {} }
-            newState.singleSong = action.song
+            const newState = { ...state }
+            const specificSong = action.song
+            newState.singleSong = specificSong
             return newState
         }
 
