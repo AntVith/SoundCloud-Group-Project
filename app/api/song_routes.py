@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Song, Comment, likes, db
+from app.models import Song, Comment, likes, db, User
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
+from ..forms.like_form import LikeForm
 from flask_login import current_user
 from app.aws_functionality import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -183,3 +184,25 @@ def all_likes(id):
     # turns the view object to a list then sums the length(which is total amount of likes)
     total_likes = len(list(valuesI))
     return {'likes': total_likes}, 200
+
+# create like for a song by song-id
+@song_routes.route('/<int:id>/likes', methods=['POST'])
+def post_like(id):
+    form = LikeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
+        user_id = form.users.data
+        song_id = form.songs.data
+
+        selected_song = Song.query.get(song_id)
+        selected_user = User.query.get(user_id)
+
+        if selected_user in selected_song.song_likes:
+            selected_song.song_likes.remove(selected_user)
+            db.session.commit()
+            return all_likes(id)
+        else:
+            selected_song.song_likes.append(selected_user)
+            db.session.commit()
+            return all_likes(id)
