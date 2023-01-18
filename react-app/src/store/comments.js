@@ -115,9 +115,7 @@ export const getAllComments = (id) => async (dispatch) => {
         case UPDATE_COMMENT: {
           const newState = {...state}
           const newObject = {...state.comments}
-          console.log('this is action.comment---', action.comment)
           newObject[action.comment.id] = action.comment
-          console.log('this is the newObject----', newObject)
           newState.comments = newObject
           return newState
 

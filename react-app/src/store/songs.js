@@ -3,6 +3,7 @@
 const GET_ALL_SONGS = 'song/GET_ALL_SONGS'
 const GET_ONE_SONG = 'song/GET_ONE_SONG'
 const POST_SONG = 'song/POST_SONG'
+const UPDATE_SONG = 'song/UPDATE_SONG'
 
 const getAll = (songs) => ({
     type: GET_ALL_SONGS,
@@ -15,6 +16,11 @@ const getOne = (song) => ({
 
 const postSong = (song) => ({
   type: POST_SONG,
+  song
+})
+
+const updateSong = (song) => ({
+  type: UPDATE_SONG,
   song
 })
 
@@ -54,6 +60,19 @@ export const getAllSongs = () => async (dispatch) => {
 
   }
 
+  export const updateASong = (payload, songId) => async dispatch => {
+    const response = await fetch(`/api/songs/${songId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    if(response.ok) {
+      const editedSong = await response.json()
+      dispatch(updateSong(editedSong))
+    return editedSong
+    }
+  }
+
 const initialState = { allSongs: {}, singleSong: {} }
 
 const songsReducer = (state = initialState, action) => {
@@ -74,6 +93,12 @@ const songsReducer = (state = initialState, action) => {
         }
 
         case POST_SONG: {
+          const newState = { ...state, allSongs: { ...state.allSongs}}
+          newState.allSongs[action.song.id] = action.song;
+          return newState
+        }
+
+        case UPDATE_SONG: {
           const newState = { ...state, allSongs: { ...state.allSongs}}
           newState.allSongs[action.song.id] = action.song;
           return newState
