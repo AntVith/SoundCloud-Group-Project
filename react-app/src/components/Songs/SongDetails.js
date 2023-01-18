@@ -5,7 +5,8 @@ import { getAllComments, postAComment, deleteAComment } from '../../store/commen
 import { getLikesBySongId } from '../../store/likes';
 import { useParams, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player'
-
+import OpenModalButton from '../OpenModalButton';
+import EditCommentModal from './EditCommentModal'
 
 
 const SongDetails = () => {
@@ -111,12 +112,18 @@ console.log(message)
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
                 </button> }
+                <OpenModalButton
+                 modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
+                 buttonText={'Edit'}
+                />
                </div>
 
 
 
           ))
+
         }
+
 
       </div>
       <div>likes: {likes.totalLikes}</div>

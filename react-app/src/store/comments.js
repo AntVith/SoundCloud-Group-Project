@@ -1,5 +1,6 @@
 const GET_ALL_COMMENTS = 'comment/GET_ALL_COMMENTS'
 const POST_COMMENT = 'comment/POST_COMMENT'
+const UPDATE_COMMENT = 'comment/UPDATE_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 
 const getAll = (comments) => ({
@@ -11,6 +12,13 @@ const postComment = (comment) => ({
   type: POST_COMMENT,
   comment
 })
+
+const updateComment = (comment) => ({
+  type: UPDATE_COMMENT,
+  comment
+})
+
+
 const deleteComment = (commentId) => ({
   type: DELETE_COMMENT,
   commentId
@@ -45,6 +53,22 @@ export const postAComment = (id, payload) => async(dispatch) => {
     return newComment
   }
 
+}
+
+export const updateAComment = (payload, commentId) => async dispatch => {
+  const response = await fetch(`/api/songs/comments/${commentId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  // console.log('this is the response', response)
+  if(response.ok) {
+    const editedComment = await response.json()
+    // console.log('this is the edited comment', editedComment)
+    dispatch(updateComment(editedComment))
+
+  return editedComment
+  }
 }
 
 
@@ -88,6 +112,17 @@ export const getAllComments = (id) => async (dispatch) => {
           delete newObject[action.commentId]
           newState.comments = newObject
           return newState
+        }
+        case UPDATE_COMMENT: {
+          const newState = {...state}
+          const newObject = {...state.comments}
+          console.log('this is action.comment---', action.comment)
+          newObject[action.comment.id] = action.comment
+          console.log('this is the newObject----', newObject)
+          newState.comments = newObject
+          return newState
+
+
         }
 
 

@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-import re
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
@@ -89,6 +88,7 @@ def all_comments(id):
 
     return {'comments' :[comment.to_dict() for comment in comments]} , 200
 
+#post comment
 @song_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def post_comment(id):
@@ -111,6 +111,33 @@ def post_comment(id):
             "errors": form.errors
         }, 400
 
+#update comment
+@song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
+# @login_required
+def update_comment(comment_id):
+
+    # new_obj = {}
+
+    old_comment = Comment.query.get(comment_id)
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        dummy_info = Comment()
+
+        form.populate_obj(dummy_info)
+        old_comment_id = old_comment.id
+        new_comment = dummy_info
+        new_comment.id = old_comment_id
+        # current_comment = new_obj
+        db.session.delete(old_comment)
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict(), 201
+
+
+
+#delete comment
 @song_routes.route('/comments/<int:comment_id>', methods=['DELETE'])
 @login_required
 def delete_comment(comment_id):
@@ -138,6 +165,7 @@ def song_by_ID(id):
 
     print(current_song)
     return {'song': current_song.to_dict()} , 200
+
 
 # get all likes for a song by song-id
 @song_routes.route('/<int:id>/likes')
