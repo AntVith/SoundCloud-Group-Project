@@ -45,7 +45,7 @@ function EditUserModal({ user }) {
         if(data && data.errors) setErrors(data.errors)
       }
     )
-
+      console.log('editted', editedUser)
     if(editedUser) {
       (closeModal)
       (history.push(`/users/${userId}`))

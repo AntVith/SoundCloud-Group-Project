@@ -18,6 +18,13 @@ function User() {
   const userData = Object.values(userInfo)
   const dispatch = useDispatch()
 
+  console.log('user data', userData)
+  const userBio = userData[0]
+  const userEmail = userData[1]
+  const userFName = userData[2]
+  const userLName = userData[4]
+  const userProfilePhoto = userData[5]
+  const userUsername = userData[6]
 
   // if(user !== userInfo){
   //   setUser(userInfo)
@@ -33,7 +40,7 @@ function User() {
       console.log('this is user----', user)
       setUser(user);
     })();
-  }, [userId]);
+  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername]);
 
   if (!user) {
     return null;
