@@ -60,7 +60,9 @@ export const getAllComments = (id) => async (dispatch) => {
           const newState = {...state}
           const newObject = {...state.comments}
           newObject[action.comment.id] = action.comment
+          console.log("ACTION", action)
           newState.comments = newObject
+          console.log("NewStateAgain", newState)
           return newState
         }
 

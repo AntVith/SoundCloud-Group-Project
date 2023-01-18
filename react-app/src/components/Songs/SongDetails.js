@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment } from '../../store/comments';
+import { postALike } from '../../store/likes';
 import { getLikesBySongId } from '../../store/likes';
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -13,12 +14,17 @@ const SongDetails = () => {
   const commentObj = useSelector(state => state.comments.comments)
   const comments = Object.values(commentObj)
   const likes = useSelector(state => state.likes.likes)
+  const allLikes = useSelector(state => state.likes.likes.totalLikes)
   const {id} = useParams()
   const userObj = useSelector(state => state.session.user)
   const history = useHistory()
 
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
+  const [likeCount, setLikeCount] = useState(allLikes)
+
+
+
 
   useEffect(() => {
     dispatch(getOneSong(id))
@@ -29,6 +35,8 @@ const SongDetails = () => {
   if (!songData.length){
     return null
   }
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -48,6 +56,17 @@ const SongDetails = () => {
     if(postedComment) {
       (history.push(`/songs/${id}`))
     }
+  }
+
+  const handleLike = async () => {
+    const payload = {
+      'songs': Number(id),
+      'users': userObj.id
+    }
+
+    const response = await dispatch(postALike(payload,id))
+    // console.log("llllll",response)
+    // setLikeCount(response.likes)
   }
 
 
@@ -85,20 +104,36 @@ const SongDetails = () => {
       <div id = 'comment-container'>
       {
           comments.map(comment => (
-
-
             <div key= {comment.id}>comment: {comment.comment}</div>
-
-
 
           ))
         }
 
       </div>
+      <div id = 'likes-container'>
       <div>likes: {likes.totalLikes}</div>
+      <button onClick={handleLike}>Like</button>
+      </div>
 
     </section>
   );
 }
 
 export default SongDetails;
+
+
+
+
+// const handleLikeClick = async () => {
+
+//   const newLike = await dispatch(postALike(songObj.id))
+//   .catch(
+//     async (res) => {
+//       const data = await res.json()
+//       if(data && data.errors) setErrors(data.errors)
+//     }
+//   )
+//   if(newLike) {
+//     (history.push(`/songs/${id}`))
+//   }
+// }

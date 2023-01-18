@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
+from ..forms.like_form import LikeForm
 
 song_routes = Blueprint('songs', __name__)
 # get all songs for homepage
@@ -42,12 +43,14 @@ def all_comments(id):
 
     return {'comments' :[comment.to_dict() for comment in comments]} , 200
 
+
 @song_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def post_comment(id):
 
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
 
     if form.validate_on_submit():
 
@@ -85,6 +88,7 @@ def all_likes(id):
 
     filtered = filter(lambda like: like[1] == id, all_likes)
 
+
     # turns filtered data to a dict
     dict_version = dict(filtered)
 
@@ -99,16 +103,25 @@ def all_likes(id):
 # create like for a song by song-id
 @song_routes.route('/<int:id>/likes', methods=['POST'])
 def post_like(id):
-    all_likes = db.session.execute(db.select(likes)).fetchall()
+    form = LikeForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # print("STEP 1-------------------")
+        user_id = form.users.data
+        song_id = form.songs.data
+        # print("STEP 2-------------------", user_id)
+        # print("STEP 2S------------------", song_id)
+        new_like = likes.insert().values(users=user_id, songs=song_id)
+        # print("STEP 3-------------------", new_like)
+        db.session.execute(new_like)
+        # print("STEP 4-------------------")
+        db.session.commit()
+        # print("STEP 5-------------------")
 
-    filtered = filter(lambda like: like[1] == id, all_likes)
 
-    # turns filtered data to a dict
-    dict_version = dict(filtered)
 
-    #gets the values from that dict, view object only tho
-    valuesI = dict_version.values()
-
-    # turns the view object to a list then sums the length(which is total amount of likes)
-    new_total_likes = len(list(valuesI)) + 1
-    return {'likes': new_total_likes}, 200
+        # new_like = likes.insert().values('users', 'songs')
+        # print("NEWLIKEEEEE-----------------", new_like)
+        # db.session.execute(new_like)
+        # db.session.commit()
+        return all_likes(id)
