@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
+import { postALike } from '../../store/likes';
 import { useParams, useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
@@ -22,6 +23,7 @@ const SongDetails = () => {
 
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
+  // const [likeCount, setLikeCount] = useState(allLikes)
 
   useEffect(() => {
     dispatch(getOneSong(id))
@@ -62,6 +64,18 @@ const SongDetails = () => {
     }
   }
 console.log(message)
+
+const handleLike = async () => {
+  const payload = {
+    'songs': Number(id),
+    'users': userObj.id
+  }
+
+  const response = await dispatch(postALike(payload,id))
+  // console.log("llllll",response)
+  // setLikeCount(response.likes)
+}
+
 
   const song = songData[0]
 
@@ -127,7 +141,10 @@ console.log(message)
 
 
       </div>
+      <div id = 'likes-container'>
       <div>likes: {likes.totalLikes}</div>
+      <button onClick={handleLike}>Like</button>
+      </div>
 
     </section>
   );
