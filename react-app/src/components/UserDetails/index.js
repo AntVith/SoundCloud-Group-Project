@@ -69,16 +69,16 @@ function User() {
           {userSongs.map(eachSong => (
           <div>
           <div>
+            <div key={eachSong.id}> <NavLink
+            to={`/songs/${eachSong.id}`}>
             <div key={eachSong.id}>{eachSong.song_title}</div>
+            </NavLink></div>
             <OpenModalButton
                  modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
                  buttonText={'Edit'}
                 />
           </div>
-            <NavLink
-            to={`/songs/${eachSong.id}`}>
-            <div key={eachSong.id}>{eachSong.song_title}</div>
-            </NavLink>
+      
             </div>
           ))}
         </div>
