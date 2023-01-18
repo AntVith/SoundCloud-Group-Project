@@ -5,25 +5,26 @@ import {useModal} from '../../context/Modal';
 import { updateAComment } from "../../store/comments"
 
 
-function EditCommentModal({ comment }) {
+function EditCommentModal(currentCommentId) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [newComment, setNewComment] = useState(comment.comment.comment)
-    const currentUser = useSelector(state => state.session.user.username)
-    const currentSong = useSelector(state => state.songs.singleSong.song.id)
+    const [newComment, setNewComment] = useState('')
+    const currentUser = useSelector(state => state.session?.user.username)
+    const currentSong = useSelector(state => state.songs?.singleSong.song.id)
     const [errors, setErrors] = useState([])
     const {closeModal} = useModal()
 
 
 
-const commentId = comment.comment.id
+const commentId = currentCommentId.currentCommentId
+console.log('this is commentId', commentId)
 
 const handleSubmit = async (e) => {
     e.preventDefault()
     setErrors([])
 
     const payload = {
-        comment,
+        'comment': newComment,
         'id': commentId,
         'song_id': currentSong,
         'username': currentUser
@@ -32,8 +33,8 @@ const handleSubmit = async (e) => {
       const editedComment = await dispatch(updateAComment(payload, commentId))
       .catch(
         async (res) => {
-          const data = await res.json()
-          if(data && data.errors) setErrors(data.errors)
+          // const data = await res?.json()
+          if(res && res.errors) setErrors(res.errors)
         }
       )
       if(editedComment) {

@@ -13,9 +13,9 @@ const postComment = (comment) => ({
   comment
 })
 
-const updateComment = (updatedComment) => ({
+const updateComment = (comment) => ({
   type: UPDATE_COMMENT,
-  updatedComment
+  comment
 })
 
 
@@ -61,9 +61,12 @@ export const updateAComment = (payload, commentId) => async dispatch => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
+  // console.log('this is the response', response)
   if(response.ok) {
     const editedComment = await response.json()
+    // console.log('this is the edited comment', editedComment)
     dispatch(updateComment(editedComment))
+
   return editedComment
   }
 }
@@ -113,9 +116,12 @@ export const getAllComments = (id) => async (dispatch) => {
         case UPDATE_COMMENT: {
           const newState = {...state}
           const newObject = {...state.comments}
+          console.log('this is action.comment---', action.comment)
           newObject[action.comment.id] = action.comment
+          console.log('this is the newObject----', newObject)
           newState.comments = newObject
           return newState
+
 
         }
 
