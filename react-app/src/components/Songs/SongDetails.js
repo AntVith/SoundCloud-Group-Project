@@ -4,6 +4,8 @@ import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
 import { useParams, useHistory } from 'react-router-dom';
+import ReactPlayer from 'react-player'
+
 
 
 const SongDetails = () => {
@@ -68,7 +70,11 @@ console.log(message)
         <div>{song.cover_photo}</div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
-        <div>{song.song_file}</div>
+        <ReactPlayer
+          url={song.song_file}
+          autoplay
+          controls
+      />
       </div>
 
       <ul>
