@@ -14,7 +14,7 @@ const SongDetails = () => {
   const comments = Object.values(commentObj)
   const likes = useSelector(state => state.likes.likes)
   const {id} = useParams()
-  const userObj = useSelector(state => state.session.user)
+  const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
   const [newComment, setNewComment] = useState('')
@@ -100,7 +100,7 @@ console.log(message)
 
               <div>
                 <div>comment: {comment.comment}</div>
-                {userObj.username === comment.username &&
+                {userObj?.username === comment.username &&
                   <button
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
