@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import EditUserModal from './edituserModal.js'
 import { getAUser } from '../../store/session';
+import { NavLink } from 'react-router-dom';
+
 
 
 
@@ -64,7 +66,10 @@ function User() {
         </div>
         <div>
           {userSongs.map(eachSong => (
+            <NavLink
+            to={`/songs/${eachSong.id}`}>
             <div key={eachSong.id}>{eachSong.song_title}</div>
+            </NavLink>
           ))}
         </div>
         </div>
