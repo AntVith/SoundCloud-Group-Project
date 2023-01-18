@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import EditUserModal from './edituserModal.js'
+import EditSongModal from './EditSongModal.js'
 
 
 
@@ -53,7 +54,13 @@ function User() {
         </div>
         <div>
           {userSongs.map(eachSong => (
+          <div>
             <div key={eachSong.id}>{eachSong.song_title}</div>
+            <OpenModalButton
+                 modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
+                 buttonText={'Edit'}
+                />
+          </div>
           ))}
         </div>
         </div>

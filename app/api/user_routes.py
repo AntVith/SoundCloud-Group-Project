@@ -42,6 +42,3 @@ def update_song(id):
         db.session.add(current_user)
         db.session.commit()
         return current_user.to_dict(), 201
-
-
-

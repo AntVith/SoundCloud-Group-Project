@@ -17,7 +17,6 @@ function EditCommentModal(currentCommentId) {
 
 
 const commentId = currentCommentId.currentCommentId
-console.log('this is commentId', commentId)
 
 const handleSubmit = async (e) => {
     e.preventDefault()
