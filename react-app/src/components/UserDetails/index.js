@@ -26,9 +26,10 @@ function User() {
   const userProfilePhoto = userData[5]
   const userUsername = userData[6]
 
+
   // if(user !== userInfo){
-  //   setUser(userInfo)
-  // }
+    //   setUser(userInfo)
+    // }
 
   useEffect(() => {
     if (!userId) {
@@ -42,9 +43,9 @@ function User() {
     })();
   }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername]);
 
-  if (!user) {
-    return null;
-  }
+    if (!user) {
+      return null;
+    }
   // const songsArr = Object.values(songs)
 
   // console.log(songsArr)
@@ -67,11 +68,12 @@ function User() {
           ))}
         </div>
         </div>
-
+       { userInfo.id === user.id &&
       <OpenModalButton
         modalComponent={<EditUserModal user={{ user }} />}
         buttonText={'Edit'}
       />
+      }
     </>
   );
 }
