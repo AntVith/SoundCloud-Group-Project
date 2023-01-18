@@ -18,6 +18,13 @@ const updateUser = (updatedUser) => {
     updatedUser
   }
 }
+export const getAUser = (userId) => async dispatch => {
+  const response = await fetch(`/api/users/${userId}`)
+  if (response.ok){
+    const userDetails = await response.json()
+    return userDetails
+  }
+}
 
 export const updateAUser = (payload, userId) => async dispatch => {
   const response = await fetch(`/api/users/${userId}`, {
