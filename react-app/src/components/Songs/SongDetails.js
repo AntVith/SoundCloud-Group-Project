@@ -112,10 +112,11 @@ console.log(message)
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
                 </button> }
+                {userObj?.username === comment.username &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
-                />
+                />}
                </div>
 
 
