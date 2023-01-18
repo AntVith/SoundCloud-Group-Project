@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Song, Comment, likes, db
+from app.models import Song, Comment, likes, db, User
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
 from ..forms.like_form import LikeForm
@@ -106,22 +106,18 @@ def post_like(id):
     form = LikeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # print("STEP 1-------------------")
+
         user_id = form.users.data
         song_id = form.songs.data
-        # print("STEP 2-------------------", user_id)
-        # print("STEP 2S------------------", song_id)
-        new_like = likes.insert().values(users=user_id, songs=song_id)
-        # print("STEP 3-------------------", new_like)
-        db.session.execute(new_like)
-        # print("STEP 4-------------------")
-        db.session.commit()
-        # print("STEP 5-------------------")
 
+        selected_song = Song.query.get(song_id)
+        selected_user = User.query.get(user_id)
 
-
-        # new_like = likes.insert().values('users', 'songs')
-        # print("NEWLIKEEEEE-----------------", new_like)
-        # db.session.execute(new_like)
-        # db.session.commit()
-        return all_likes(id)
+        if selected_user in selected_song.song_likes:
+            selected_song.song_likes.remove(selected_user)
+            db.session.commit()
+            return all_likes(id)
+        else:
+            selected_song.song_likes.append(selected_user)
+            db.session.commit()
+            return all_likes(id)
