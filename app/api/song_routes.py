@@ -43,7 +43,7 @@ def all_comments(id):
 
     return {'comments' :[comment.to_dict() for comment in comments]} , 200
 
-#post comment 
+#post comment
 @song_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def post_comment(id):
@@ -69,13 +69,10 @@ def post_comment(id):
 #update comment
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
 @login_required
-def update_comment(id):
-    current_user = User.query.get(id)
+def update_comment(comment_id):
 
-    if not current_user:
-        return {'errors': 'User not found'}, 404
 
-    current_comment = Comment.query.get(id)
+    current_comment = Comment.query.get(comment_id)
 
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -86,6 +83,8 @@ def update_comment(id):
         db.session.add(current_comment)
         db.session.commit()
         return current_comment.to_dict(), 201
+    return 'hi'
+
 
 #delete comment
 @song_routes.route('/comments/<int:comment_id>', methods=['DELETE'])
