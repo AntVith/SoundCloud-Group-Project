@@ -106,11 +106,17 @@ def post_comment(id):
         db.session.commit()
 
         return new_comment.to_dict(), 200
+        
 
     if form.errors:
         return {
             "errors": form.errors
         }, 400
+
+
+    # else:
+    #     return form.errors
+
 
 #update comment
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
@@ -135,6 +141,8 @@ def update_comment(comment_id):
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict(), 201
+    else:
+        return form.errors
 
 
 

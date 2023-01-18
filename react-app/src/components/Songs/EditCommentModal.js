@@ -33,7 +33,6 @@ const handleSubmit = async (e) => {
       const editedComment = await dispatch(updateAComment(payload, commentId))
       .catch(
         async (res) => {
-          // const data = await res?.json()
           if(res && res.errors) setErrors(res.errors)
         }
       )
@@ -56,6 +55,7 @@ const handleSubmit = async (e) => {
             <div>
               <input
                 type='text'
+                required
                 onChange={(e) => setNewComment(e.target.value)}
                 value={newComment}
                 placeholder='Edit Comment'
