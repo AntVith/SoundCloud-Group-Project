@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { updateAUser } from "../../store/session";
 // import { updateASpot } from "../store/spots";
 
-
 function EditUserModal({ user }) {
   const dispatch = useDispatch();
   const history = useHistory()

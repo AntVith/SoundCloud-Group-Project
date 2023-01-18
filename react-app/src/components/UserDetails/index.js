@@ -19,25 +19,26 @@ function User() {
   const dispatch = useDispatch()
 
 
+
   // if(user !== userInfo){
-  //   setUser(userInfo)
-  // }
+    //   setUser(userInfo)
+    // }
 
-  useEffect(() => {
-    if (!userId) {
-      return;
+    useEffect(() => {
+      if (!userId) {
+        return;
+      }
+      (async () => {
+        const response = await dispatch(getAUser(userId));
+        const user = response
+        console.log('this is user----', user)
+        setUser(user);
+      })();
+    }, [userId]);
+
+    if (!user) {
+      return null;
     }
-    (async () => {
-      const response = await dispatch(getAUser(userId));
-      const user = response
-      console.log('this is user----', user)
-      setUser(user);
-    })();
-  }, [userId]);
-
-  if (!user) {
-    return null;
-  }
   // const songsArr = Object.values(songs)
 
   // console.log(songsArr)
@@ -60,11 +61,12 @@ function User() {
           ))}
         </div>
         </div>
-
+       { userInfo.id === user.id &&
       <OpenModalButton
         modalComponent={<EditUserModal user={{ user }} />}
         buttonText={'Edit'}
       />
+      }
     </>
   );
 }
