@@ -113,7 +113,7 @@ def post_comment(id):
 
 #update comment
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
-# @login_required
+@login_required
 def update_comment(comment_id):
 
     # new_obj = {}
