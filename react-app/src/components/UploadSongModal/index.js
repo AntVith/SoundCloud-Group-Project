@@ -13,7 +13,7 @@ function UploadNewSong() {
   const dispatch = useDispatch()
   const [cover_photo, setCover_photo] = useState('')
   const [genre, setGenre] = useState('')
-  const [song_file, setSong_file] = useState('')
+  const [songfile, setSong_file] = useState('')
   const [song_title, setSong_title] = useState('')
   const [errors, setErrors] = useState([]);
 
@@ -22,15 +22,23 @@ function UploadNewSong() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrors([])
+    const formData = new FormData()
+    formData.append('songfile', songfile)
+    formData.append('genre', genre)
+    formData.append('song_title', song_title)
+    formData.append('cover_photo', cover_photo)
+    formData.append('user_id', sessionUser.id )
+
     const newSong = {
       cover_photo,
       genre,
-      song_file,
+      songfile,
       song_title,
       user_id: sessionUser.id
     }
+    console.log('new song data', newSong)
 
-    const createdSong = await dispatch(createSong(newSong)).catch(
+    const createdSong = await dispatch(createSong(formData)).catch(
       async (res) => {
         const data = await res.json()
         if(data && data.errors) setErrors(data.errors)
@@ -71,11 +79,11 @@ function UploadNewSong() {
       </div>
       <div>
         <input
-          type='text'
-          onChange={(e) => setSong_file(e.target.value)}
-          value={song_file}
+          type='file'
+          accept='audio/*'
+          onChange={(e) => setSong_file(e.target.files[0])}
           placeholder='Song file'
-          name='song_file'
+          name='songfile'
         />
       </div>
       <div>

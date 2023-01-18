@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
+import re
 from app.models import Song, Comment, likes, db
 from ..forms.song_form import SongForm
 from ..forms.comment_form import CommentForm
@@ -24,38 +25,51 @@ def new_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if "song_file" not in request.files:
+    if "songfile" not in request.files:
         return {"errors": "image required"}, 400
 
-    song_file = request.files["song_file"]
+    songfile = request.files["songfile"]
 
-    if not allowed_file(song_file.filename):
+    if not allowed_file(songfile.filename):
         return {"errors": "file type not permitted"}, 400
+    print('pre validation--------')
 
-    song_file.filename = get_unique_filename(song_file.filename)
+    if form.validate_on_submit():
+        print('past validation--------')
 
-    upload = upload_file_to_s3(song_file)
+        songfile.filename = get_unique_filename(songfile.filename)
 
-    if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return upload, 400
+        print('str version' , str(songfile))
+        print('file', songfile)
 
-    url = upload["url"]
+        upload = upload_file_to_s3(songfile)
+        print('upload--------', upload)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
 
-    # flask_login allows us to get the current user from the request
-    new_song = Song(song_file=url)
-    db.session.add(new_song)
-    db.session.commit()
-    return {"url": url}
+        url = upload["url"]
+        # flask_login allows us to get the current user from the request
+        new_song = Song()
+        form.populate_obj(new_song)
+        new_song.song_file = url
+
+        db.session.add(new_song)
+        db.session.commit()
+        return new_song.to_dict(), 201
+    if form.errors:
+        return {
+            "errors": form.errors
+        }, 400
 
 
 
 
     # if form.validate_on_submit():
     #     new_song = Song()
-    #     form.populate_obj(new_song)
+    #
 
     #     db.session.add(new_song)
     #     db.session.commit()

@@ -39,11 +39,12 @@ export const getAllSongs = () => async (dispatch) => {
   };
 
   export const createSong = (newSong) => async (dispatch) => {
+    console.log('thunk' , newSong)
     const response = await fetch('/api/songs/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newSong),
+      body: newSong
     })
+    console.log('err?', response)
 
     if (response.ok) {
       const createdNewSong = await response.json();
