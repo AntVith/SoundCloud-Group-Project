@@ -23,7 +23,7 @@ const SongDetails = () => {
 
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
-  const [likeCount, setLikeCount] = useState(allLikes)
+  // const [likeCount, setLikeCount] = useState(allLikes)
 
   useEffect(() => {
     dispatch(getOneSong(id))
