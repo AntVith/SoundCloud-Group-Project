@@ -97,7 +97,7 @@ const handleLike = async () => {
   return (
     <section>
       <div id= 'song-container'>
-        <div>{song.cover_photo}</div>
+        <div><img src={song.cover_photo} /></div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
         <ReactPlayer

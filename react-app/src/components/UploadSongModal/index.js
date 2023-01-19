@@ -11,7 +11,7 @@ function UploadNewSong() {
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory()
   const dispatch = useDispatch()
-  const [cover_photo, setCover_photo] = useState('')
+  const [coverphoto, setCover_photo] = useState('')
   const [genre, setGenre] = useState('Classical')
   const [songfile, setSong_file] = useState('')
   const [song_title, setSong_title] = useState('')
@@ -30,11 +30,11 @@ function UploadNewSong() {
     formData.append('songfile', songfile)
     formData.append('genre', genre)
     formData.append('song_title', song_title)
-    formData.append('cover_photo', cover_photo)
+    formData.append('coverphoto', coverphoto)
     formData.append('user_id', sessionUser.id )
 
     const newSong = {
-      cover_photo,
+      coverphoto,
       genre,
       songfile,
       song_title,
@@ -60,7 +60,7 @@ function UploadNewSong() {
   }
 
   return (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
     <div>
       <h1>Add a Song</h1>
         <ul>
@@ -70,12 +70,11 @@ function UploadNewSong() {
         </ul>
       <div>
         <input
-          type='text'
-          required
-          onChange={(e) => setCover_photo(e.target.value)}
-          value={cover_photo}
+          type='file'
+          accept="image/*"
+          onChange={(e) => setCover_photo(e.target.files[0])}
           placeholder='Cover Photo'
-          name='cover_photo'
+          name='coverphoto'
         />
       </div>
       <div>
@@ -101,6 +100,8 @@ function UploadNewSong() {
         </select>
 
       </div>
+
+
       <div>
         <input
           type='file'
