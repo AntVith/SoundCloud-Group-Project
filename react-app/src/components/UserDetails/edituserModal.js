@@ -76,6 +76,7 @@ function EditUserModal({ user }) {
             type='text'
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
             placeholder='Email'
             name='email'
           />
@@ -85,6 +86,7 @@ function EditUserModal({ user }) {
             type='text'
             onChange={(e) => setFirst_name(e.target.value)}
             value={first_name}
+            required
             placeholder='First Name'
             name='first_name'
           />
@@ -94,6 +96,7 @@ function EditUserModal({ user }) {
             type='text'
             onChange={(e) => setLast_name(e.target.value)}
             value={last_name}
+            required
             placeholder='Last Name'
             name='last_name'
           />
@@ -112,6 +115,7 @@ function EditUserModal({ user }) {
             type='text'
             onChange={(e) => setUsername(e.target.value)}
             value={username}
+            required
             placeholder='UserName'
             name='username'
           />
