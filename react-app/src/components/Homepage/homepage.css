@@ -1,10 +1,26 @@
 .main-container{
-  margin: 50px 120px 0 120px
+  margin: 50px 120px 0 120px;
+  overflow: scroll;
 }
 
 .genre-container{
   border: 1px solid #333;
   margin-bottom: 20px;
   display: block;
+
+}
+
+.slider-panel{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.slider-eachsong{
+  flex: 0 0 auto;
+  margin-right: 10px;
+  border: 1px solid black;
+  width: 250px;
+  height: 250px;
 
 }

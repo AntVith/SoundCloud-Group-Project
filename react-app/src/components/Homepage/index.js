@@ -21,70 +21,115 @@ const HomePage = () => {
   return (
     <section className='hompage-container'>
       <div className='main-container'>
-        <div className='genre-container'>Soul
-
+      <div>
+        <div className='genre-container'>
+            <div className='genre-name'>
+              <h2>Soul</h2>
+            </div>
+            <div className='song-gallary-container'>
+            <div className='song-gallary'>
+              <div className='slider-panel'>
+                {
+                  songs.map(song => (
+                    <div className='slider-eachsong'>
+                      <NavLink
+                        to={`/songs/${song.id}`}
+                        key={song.id}
+                        style={{textDecoration: 'none'}}>
+                      <div>{song.song_title}</div>
+                      </NavLink>
+                    </div>
+                  ))
+                }
+              </div>
+              </div>
+              <div className='gallary-slider-left'>
+                <button>Button left</button>
+              </div>
+              <div className='gallary-slider-right'>
+                <button>button right</button>
+              </div>
+            </div>
         </div>
 
-        <div className='genre-container'>Rock
+      </div>
 
+        <div className='genre-container'>
+          <div>
+            <h2>Rock</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>R&B
-
+        <div className='genre-container'>
+          <div>
+            <h2>R&B</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Rap
-
+        <div className='genre-container'>
+          <div>
+            <h2>Rap</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Pop
-
+        <div className='genre-container'>
+          <div>
+            <h2>Pop</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Jazz
-
+        <div className='genre-container'>
+          <div>
+            <h2>Jazz</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Instrumental
-
+        <div className='genre-container'>
+          <div>
+            <h2>Instrumental</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Hip-Hop
-
+        <div className='genre-container'>
+          <div>
+            <h2>Hip-Hop</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Gospel
-
+        <div className='genre-container'>
+          <div>
+            <h2>Gospel</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>EDM
-
+        <div className='genre-container'>
+          <div>
+            <h2>EDM</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Drill
-
+        <div className='genre-container'>
+          <div>
+            <h2>Drill</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Disco
-
+        <div className='genre-container'>
+          <div>
+            <h2>Disco</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Country
-
+        <div className='genre-container'>
+          <div>
+            <h2>Country</h2>
+          </div>
         </div>
 
-        <div className='genre-container'>Classical
-
-        {
-          songs.map(song => (
-              <NavLink
-                to={`/songs/${song.id}`}
-                key={song.id}
-                style={{textDecoration: 'none'}}>
-               <div>{song.song_title}</div>
-              </NavLink>
-          ))
-        }
+        <div className='genre-container'>
+          <div>
+            <h2>Classical</h2>
+          </div>
         </div>
       </div>
 
