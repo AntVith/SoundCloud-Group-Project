@@ -48,7 +48,6 @@ export const postAComment = (id, payload) => async(dispatch) => {
 
   if (response.ok){
     const newComment = await response.json()
-
     dispatch(postComment(newComment))
     return newComment
   }

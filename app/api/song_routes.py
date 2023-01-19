@@ -24,24 +24,38 @@ def all_songs():
 def new_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('made it here')
+
 
     if "songfile" not in request.files:
+        print('song file took an L')
         return {"errors": "song required"}, 400
 
+    if "coverphoto" not in request.files:
+        print("!!!!", request.files)
+        print('cover photo took an L')
+        return {"errors": "photo required"}, 400
+
+    print('hello')
+    coverphoto = request.files["coverphoto"]
     songfile = request.files["songfile"]
 
     if not allowed_file(songfile.filename):
         return {"errors": "file type not permitted"}, 400
+
+    if not allowed_file(coverphoto.filename):
+        return {"errors": "file type not permitted"}, 400
+
     print('pre validation--------')
 
     if form.validate_on_submit():
         print('past validation--------')
-
+        coverphoto.filename = get_unique_filename(coverphoto.filename)
         songfile.filename = get_unique_filename(songfile.filename)
 
-        print('str version' , str(songfile))
-        print('file', songfile)
-
+        # print('str version' , str(songfile))
+        # print('file', songfile)
+        upload2 = upload_file_to_s3(coverphoto)
         upload = upload_file_to_s3(songfile)
         print('upload--------', upload)
         if "url" not in upload:
@@ -51,10 +65,12 @@ def new_song():
             return upload, 400
 
         url = upload["url"]
+        url2 = upload2["url"]
         # flask_login allows us to get the current user from the request
         new_song = Song()
         form.populate_obj(new_song)
         new_song.song_file = url
+        new_song.cover_photo = url2
 
         db.session.add(new_song)
         db.session.commit()
@@ -106,11 +122,17 @@ def post_comment(id):
         db.session.commit()
 
         return new_comment.to_dict(), 200
+        
 
     if form.errors:
         return {
             "errors": form.errors
         }, 400
+
+
+    # else:
+    #     return form.errors
+
 
 #update comment
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
@@ -135,6 +157,8 @@ def update_comment(comment_id):
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict(), 201
+    else:
+        return form.errors
 
 
 

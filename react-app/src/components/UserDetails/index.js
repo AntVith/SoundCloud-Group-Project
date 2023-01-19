@@ -79,20 +79,23 @@ function User() {
         </div>
         <div>
           {userSongs.map(eachSong => (
-          <div>
+
           <div>
             <div key={eachSong.id}> <NavLink
             to={`/songs/${eachSong.id}`}>
             <div key={eachSong.id}>{eachSong.song_title}</div>
             </NavLink></div>
+            { userInfo.id === user.id &&
+            <div>
             <OpenModalButton
                  modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
                  buttonText={'Edit'}
                 />
                 <button onClick={() => handleDeletion(eachSong.id)}>Delete</button>
+              </div>
+            }
           </div>
 
-            </div>
           ))}
         </div>
         </div>
