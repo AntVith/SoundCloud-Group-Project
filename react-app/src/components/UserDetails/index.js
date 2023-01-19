@@ -58,14 +58,12 @@ function User() {
 
   // console.log(songsArr)
 
-  // let message = ''
+  let message = ''
   const handleDeletion = async (songId) => {
-    await dispatch(deleteASong(songId))
-    // if (response){
-    //   // message = response.message
-    //   (history.push(`/users/${userId}`))
-
-    // }
+    const response = await dispatch(deleteASong(songId))
+    if (response){
+      message = response.message
+    }
   }
 
   return (
@@ -92,10 +90,7 @@ function User() {
                  modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
                  buttonText={'Edit'}
                 />
-                <button
-                onClick={() => handleDeletion(eachSong.id)}
-                >Delete
-                </button>
+                <button onClick={() => handleDeletion(eachSong.id)}>Delete</button>
           </div>
 
             </div>

@@ -237,6 +237,3 @@ def delete_song(song_id):
     db.session.commit()
 
     return {"message": 'successfully deleted'}
-
-
-

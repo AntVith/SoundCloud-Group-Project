@@ -84,9 +84,9 @@ export const getAllSongs = () => async (dispatch) => {
      method: 'DELETE',
     })
     if (response.ok) {
-     const deleteSongResponse = await response.json();
-     dispatch(deleteSong(songId));
-     return deleteSongResponse
+      const deletionResponse = await response.json();
+      dispatch(deleteSong(songId));
+      return deletionResponse
     }
  }
 
@@ -124,8 +124,10 @@ const songsReducer = (state = initialState, action) => {
         }
 
         case DELETE_SONG: {
-          const newState = {...state, allSongs: { ...state.allSongs}}
-          delete newState.allSongs[action.id]
+          const newState = {...state}
+          const newObject = {...state.allSongs}
+          delete newObject[action.songId]
+          newState.allSongs = newObject
           return newState
         }
 
