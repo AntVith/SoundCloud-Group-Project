@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body{
+  text-decoration: none;
+}
+.nav{
+  display: block;
+  width: 100%;
+
+  /* border: 2px red solid; */
+  width: 100%;
+  background-color: #333;
+}
+
+.header{
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between ;
+  /* width: 100%; */
+  margin: 0 120px 0 120px;
+  background-color: #333;
+
+
+  z-index: 10;
+}
+
+.homeLink{
+  text-decoration: none;
+  color: white;
+}
+
+
+.homelink-container{
+  background-color: black;
+  display: flex;
+  align-items: center;
+}
+
+.test{
+  height: 46px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeWord{
+  text-decoration: none;
+  color: white;
+  background-color: rgb(18, 18, 18);
+  font: 15px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  padding: 9px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 35px;
+  width: 105px;
+}
+
+.header-right{
+  display: flex;
+  align-items: center;
+  width: 450px;
+  justify-content: space-evenly;
+}
+
+
+.userslink{
+  text-decoration: none;
+  color: #f50;
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+button.Upload{
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  font-weight: 100;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.log-out-button{
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  font-weight: 100;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.header-center{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border: 1px solid;
+  text-align: center;
+  height: 25px;
+  background-color: white;
+  width: 300px;
+  border-radius: 5px;
+  margin-left: 70px;
+
+}
+/* .search-input{
+
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+  max-width: fit-content;
+  padding: 10px;
+  height: 12px;
+  width: 300px;
+  border-radius: 5px;
+  outline: none;
+} */
+
+.search-input{
+  border: none;
+  outline: none;
+  text-align: center;
+  max-width: fit-content;
+}
+
+.search-icon{
+  display: flex;
+  margin-right: 10px;
+}
+
+.fa-magnifying-glass{
+  color:#333;
+}

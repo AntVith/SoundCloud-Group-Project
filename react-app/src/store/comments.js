@@ -48,7 +48,6 @@ export const postAComment = (id, payload) => async(dispatch) => {
 
   if (response.ok){
     const newComment = await response.json()
-
     dispatch(postComment(newComment))
     return newComment
   }
@@ -116,9 +115,7 @@ export const getAllComments = (id) => async (dispatch) => {
         case UPDATE_COMMENT: {
           const newState = {...state}
           const newObject = {...state.comments}
-          console.log('this is action.comment---', action.comment)
           newObject[action.comment.id] = action.comment
-          console.log('this is the newObject----', newObject)
           newState.comments = newObject
           return newState
 

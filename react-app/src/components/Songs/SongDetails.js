@@ -35,9 +35,10 @@ const SongDetails = () => {
     return null
   }
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     const payload = {
       'song_id': Number(id),
       'username': userObj.username,
@@ -48,22 +49,33 @@ const SongDetails = () => {
       async (res) => {
         const data = await res.json()
         if(data && data.errors) setErrors(data.errors)
+
       }
     )
     if(postedComment) {
       (history.push(`/songs/${id}`))
     }
+
+    setNewComment('')
+
   }
+
+
+
+
   let message = ''
   const handleDeletion = async (commentId) => {
-    console.log('1')
     const response = await dispatch(deleteAComment(commentId))
     console.log('message', message)
     if (response){
       message = response.message
     }
   }
-console.log(message)
+
+
+
+
+
 
 const handleLike = async () => {
   const payload = {
@@ -101,12 +113,13 @@ const handleLike = async () => {
           {userObj &&
           <div>
             <input
-            type='text'
+            type='text' required
             onChange={(e) => setNewComment(e.target.value)}
             value={newComment}
             placeholder='Write a Comment'></input>
             <button
             onClick={handleSubmit}
+            disabled={!newComment}
             >Post Comment</button>
             </div>
           }

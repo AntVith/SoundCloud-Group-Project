@@ -98,7 +98,7 @@ def new_song():
 
 
 
-# get all comments based on songID for sond detials page
+# get all comments based on songID for song detials page
 @song_routes.route('/<int:id>/comments')
 def all_comments(id):
     comments = Comment.query.filter(Comment.song_id == id)
@@ -122,15 +122,21 @@ def post_comment(id):
         db.session.commit()
 
         return new_comment.to_dict(), 200
+        
 
     if form.errors:
         return {
             "errors": form.errors
         }, 400
 
+
+    # else:
+    #     return form.errors
+
+
 #update comment
 @song_routes.route('/comments/<int:comment_id>', methods=['PUT'])
-# @login_required
+@login_required
 def update_comment(comment_id):
 
     # new_obj = {}
@@ -151,6 +157,8 @@ def update_comment(comment_id):
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict(), 201
+    else:
+        return form.errors
 
 
 
@@ -201,6 +209,26 @@ def all_likes(id):
     total_likes = len(list(valuesI))
     return {'likes': total_likes}, 200
 
+
+# update song by id
+@song_routes.route('/<int:song_id>', methods=['PUT'])
+@login_required
+def update_song(song_id):
+
+    old_song = Song.query.get(song_id)
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_song = Song()
+
+        form.populate_obj(new_song)
+        old_song_id = old_song.id
+        new_song.id = old_song_id
+        db.session.delete(old_song)
+        db.session.add(new_song)
+        db.session.commit()
+        return new_song.to_dict(), 201
 # create like for a song by song-id
 @song_routes.route('/<int:id>/likes', methods=['POST'])
 def post_like(id):
