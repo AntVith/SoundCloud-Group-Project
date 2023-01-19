@@ -4,6 +4,7 @@ const GET_ALL_SONGS = 'song/GET_ALL_SONGS'
 const GET_ONE_SONG = 'song/GET_ONE_SONG'
 const POST_SONG = 'song/POST_SONG'
 const UPDATE_SONG = 'song/UPDATE_SONG'
+const DELETE_SONG = 'song/DELETE_SONG'
 
 const getAll = (songs) => ({
     type: GET_ALL_SONGS,
@@ -21,6 +22,11 @@ const postSong = (song) => ({
 
 const updateSong = (song) => ({
   type: UPDATE_SONG,
+  song
+})
+
+const deleteSong = (song) => ({
+  type: DELETE_SONG,
   song
 })
 
@@ -73,6 +79,19 @@ export const getAllSongs = () => async (dispatch) => {
     }
   }
 
+  export const deleteASong = (songId) => async(dispatch) => {
+    const response = await fetch(`/api/songs/${songId}`, {
+     method: 'DELETE',
+    })
+    if (response.ok) {
+     const deleteSongResponse = await response.json();
+     dispatch(deleteSong(songId));
+     return deleteSongResponse
+    }
+ }
+
+
+
 const initialState = { allSongs: {}, singleSong: {} }
 
 const songsReducer = (state = initialState, action) => {
@@ -101,6 +120,12 @@ const songsReducer = (state = initialState, action) => {
         case UPDATE_SONG: {
           const newState = { ...state, allSongs: { ...state.allSongs}}
           newState.allSongs[action.song.id] = action.song;
+          return newState
+        }
+
+        case DELETE_SONG: {
+          const newState = {...state, allSongs: { ...state.allSongs}}
+          delete newState.allSongs[action.id]
           return newState
         }
 

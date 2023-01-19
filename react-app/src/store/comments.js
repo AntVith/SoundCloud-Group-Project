@@ -119,9 +119,8 @@ export const getAllComments = (id) => async (dispatch) => {
           newObject[action.comment.id] = action.comment
           newState.comments = newObject
           return newState
-
-
         }
+        
 
 
         default:

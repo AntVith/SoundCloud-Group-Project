@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import EditUserModal from './edituserModal.js'
 import EditSongModal from './EditSongModal.js'
 import { getAUser } from '../../store/session';
+import { deleteASong } from '../../store/songs';
 import { NavLink } from 'react-router-dom';
 
 
@@ -30,6 +31,10 @@ function User() {
   const userUsername = userData[6]
 
 
+  let totalSongs = songsArr.length
+
+  console.log('this is totalSongs-------', totalSongs)
+
   // if(user !== userInfo){
     //   setUser(userInfo)
     // }
@@ -44,7 +49,7 @@ function User() {
       console.log('this is user----', user)
       setUser(user);
     })();
-  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername]);
+  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername, totalSongs, dispatch]);
 
     if (!user) {
       return null;
@@ -52,6 +57,14 @@ function User() {
   // const songsArr = Object.values(songs)
 
   // console.log(songsArr)
+
+  let message = ''
+  const handleDeletion = async (songId) => {
+    const response = await dispatch(deleteASong(songId))
+    if (response){
+      message = response.message
+    }
+  }
 
   return (
     <>
@@ -77,8 +90,12 @@ function User() {
                  modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
                  buttonText={'Edit'}
                 />
+                <button
+                onClick={() => handleDeletion(eachSong.id)}
+                >Delete
+                </button>
           </div>
-      
+
             </div>
           ))}
         </div>

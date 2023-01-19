@@ -205,6 +205,7 @@ def update_song(song_id):
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict(), 201
+
 # create like for a song by song-id
 @song_routes.route('/<int:id>/likes', methods=['POST'])
 def post_like(id):
@@ -226,3 +227,16 @@ def post_like(id):
             selected_song.song_likes.append(selected_user)
             db.session.commit()
             return all_likes(id)
+
+# delete song by id
+@song_routes.route('/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    deleted_song = Song.query.get(song_id)
+    db.session.delete(deleted_song)
+    db.session.commit()
+
+    return {"message": 'successfully deleted'}
+
+
+
