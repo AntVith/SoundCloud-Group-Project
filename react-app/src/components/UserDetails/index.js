@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useInsertionEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import EditUserModal from './edituserModal.js'
 import EditSongModal from './EditSongModal.js'
 import { getAUser } from '../../store/session';
 import { deleteASong } from '../../store/songs';
 import { NavLink } from 'react-router-dom';
+
 
 
 
@@ -21,6 +22,7 @@ function User() {
   const userInfo = useSelector(state => state.session.user)
   const userData = Object.values(userInfo)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   console.log('user data', userData)
   const userBio = userData[0]
@@ -31,9 +33,7 @@ function User() {
   const userUsername = userData[6]
 
 
-  let totalSongs = songsArr.length
 
-  console.log('this is totalSongs-------', totalSongs)
 
   // if(user !== userInfo){
     //   setUser(userInfo)
@@ -49,7 +49,7 @@ function User() {
       console.log('this is user----', user)
       setUser(user);
     })();
-  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername, totalSongs, dispatch]);
+  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername, dispatch]);
 
     if (!user) {
       return null;
@@ -58,12 +58,14 @@ function User() {
 
   // console.log(songsArr)
 
-  let message = ''
+  // let message = ''
   const handleDeletion = async (songId) => {
-    const response = await dispatch(deleteASong(songId))
-    if (response){
-      message = response.message
-    }
+    await dispatch(deleteASong(songId))
+    // if (response){
+    //   // message = response.message
+    //   (history.push(`/users/${userId}`))
+
+    // }
   }
 
   return (
