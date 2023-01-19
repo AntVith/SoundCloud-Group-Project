@@ -24,7 +24,6 @@ function User() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  console.log('user data', userData)
   const userBio = userData[0]
   const userEmail = userData[1]
   const userFName = userData[2]

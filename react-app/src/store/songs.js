@@ -25,9 +25,9 @@ const updateSong = (song) => ({
   song
 })
 
-const deleteSong = (song) => ({
+const deleteSong = (songId) => ({
   type: DELETE_SONG,
-  song
+  songId
 })
 
 export const getOneSong = (id) => async(dispatch) => {
@@ -125,9 +125,11 @@ const songsReducer = (state = initialState, action) => {
 
         case DELETE_SONG: {
           const newState = {...state}
-          const newObject = {...state.allSongs}
-          delete newObject[action.songId]
-          newState.allSongs = newObject
+          const newAllSongsObject = {...state.allSongs}
+          const newSingleSongObject = {}
+          delete newAllSongsObject[action.songId]
+          newState.singleSong = newSingleSongObject
+          newState.allSongs = newAllSongsObject
           return newState
         }
 
