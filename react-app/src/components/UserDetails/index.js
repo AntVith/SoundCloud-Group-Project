@@ -73,12 +73,14 @@ function User() {
             to={`/songs/${eachSong.id}`}>
             <div key={eachSong.id}>{eachSong.song_title}</div>
             </NavLink></div>
+            { userInfo.id === user.id &&
             <OpenModalButton
                  modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
                  buttonText={'Edit'}
                 />
+            }
           </div>
-      
+
             </div>
           ))}
         </div>
