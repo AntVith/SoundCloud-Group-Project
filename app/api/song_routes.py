@@ -122,7 +122,7 @@ def post_comment(id):
         db.session.commit()
 
         return new_comment.to_dict(), 200
-        
+
 
     if form.errors:
         return {
@@ -139,24 +139,17 @@ def post_comment(id):
 @login_required
 def update_comment(comment_id):
 
-    # new_obj = {}
 
     old_comment = Comment.query.get(comment_id)
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        dummy_info = Comment()
+        form.populate_obj(old_comment)
 
-        form.populate_obj(dummy_info)
-        old_comment_id = old_comment.id
-        new_comment = dummy_info
-        new_comment.id = old_comment_id
-        # current_comment = new_obj
-        db.session.delete(old_comment)
-        db.session.add(new_comment)
+        db.session.add(old_comment)
         db.session.commit()
-        return new_comment.to_dict(), 201
+        return old_comment.to_dict(), 201
     else:
         return form.errors
 
