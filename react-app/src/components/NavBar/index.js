@@ -4,8 +4,8 @@ import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton'
 import UploadNewSong from '../UploadSongModal';
+import './navbar.css'
 
-// import '../Homepage/homepage.css'
 
 
 function NavBar({loaded}) {
@@ -16,28 +16,48 @@ function NavBar({loaded}) {
   if(sessionUser) {
     sessionLinks = (
     <>
-      <nav>
-        <div className='navbar'>
-          <div>
-            <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-            </NavLink>
+    <nav className='nav'>
+      <div className='header'>
+      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
+          <div className='homelink-container'>
+            <div className='test'>
+          {/* <NavLink to='/' exact={true} activeClassName='active'> */}
+              <i class="fa-brands fa-soundcloud fa-2x"></i>
+            {/* </NavLink> */}
+            </div>
+            <div className='homeWord'>
+              <p className='word'>Home</p>
+            </div>
           </div>
-          <div>
-            <NavLink to='/users' exact={true} activeClassName='active'>Users
-            </NavLink>
+        </NavLink>
+        <div className='header-center'>
+            <input
+            type='text'
+            disabled
+            placeholder='Feature coming soon'
+            className='search-input'>
+            </input>
+            <div className='search-icon'>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
           </div>
-          <div>
+          <div className='header-right'>
+            <div className='artists-link'>
+            <NavLink className={'userslink'} to='/users' exact={true} activeClassName='active'>Search by Artist
+            </NavLink>
+            </div>
+            <div className='upload-button'>
             <OpenModalButton
             buttonText='Upload'
             modalComponent={<UploadNewSong />}
             />
-          </div>
+            </div>
+            <div className='log-out'>
+            <LogoutButton />
+            </div>
         </div>
-        <div>
-          <LogoutButton />
-        </div>
-      </nav>
+      </div>
+    </nav>
     </>
     );
   } else {
@@ -65,43 +85,6 @@ function NavBar({loaded}) {
 
 
   }
-
-
-    // return (
-    //   <div>
-    //     <nav>
-    //       <div className='navbar'>
-    //         <div>
-    //           <NavLink to='/' exact={true} activeClassName='active'>
-    //             Home
-    //           </NavLink>
-    //         </div>
-    //         <div>
-    //           <NavLink to='/login' exact={true} activeClassName='active'>
-    //             Login
-    //           </NavLink>
-    //         </div>
-    //         <div>
-    //           <NavLink to='/sign-up' exact={true} activeClassName='active'>
-    //             Sign Up
-    //           </NavLink>
-    //         </div>
-    //         <div>
-    //           <NavLink to='/users' exact={true} activeClassName='active'>
-    //             Users
-    //           </NavLink>
-    //         </div>
-    //         <div>
-    //           <LogoutButton />
-    //         </div>
-    //       </div>
-    //     </nav>
-
-    //   </div>
-    // );
-
-
-
 
 
 

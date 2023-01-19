@@ -19,8 +19,8 @@ const HomePage = () => {
 
 
   return (
-    <section>
-      <div className='body' id= 'main-container'>
+    <section className='hompage-container'>
+      <div className='main-container'>
         {
           songs.map(song => (
 
