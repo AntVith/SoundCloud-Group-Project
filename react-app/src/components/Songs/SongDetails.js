@@ -4,7 +4,7 @@ import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
 import { postALike } from '../../store/likes';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
@@ -21,6 +21,7 @@ const SongDetails = () => {
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
+  const [users, setUsers] = useState([]);
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
   // const [likeCount, setLikeCount] = useState(allLikes)
@@ -29,11 +30,24 @@ const SongDetails = () => {
     dispatch(getOneSong(id))
     dispatch(getAllComments(id))
     dispatch(getLikesBySongId(id))
+
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
   }, [id, dispatch])
+
 
   if (!songData.length){
     return null
   }
+  if(!users.length){
+    return  null
+  }
+  console.log('users', users)
+
 
 
 
@@ -100,6 +114,9 @@ const handleLike = async () => {
         <div><img src={song.cover_photo} /></div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
+        <NavLink
+        to={`/users/${song.user_id}`}
+        >{users[song.user_id - 1].username}</NavLink>
         <ReactPlayer
           url={song.song_file}
           autoplay
