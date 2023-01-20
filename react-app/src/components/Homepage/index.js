@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllSongs } from '../../store/songs'
 import { NavLink } from 'react-router-dom';
+
 import './homepage.css'
 
 
@@ -14,6 +15,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getAllSongs())
+    // dispatch(Waveform.pause())
   }, [dispatch])
 
 
@@ -36,6 +38,7 @@ const HomePage = () => {
           ))
         }
       </div>
+      {/* <div><Waveform /></div> */}
 
     </section>
   );

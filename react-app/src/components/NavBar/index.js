@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton'
 import UploadNewSong from '../UploadSongModal';
+
 import './navbar.css'
 
 
@@ -18,7 +19,7 @@ function NavBar({loaded}) {
     <>
     <nav className='nav'>
       <div className='header'>
-      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
+      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
           <div className='homelink-container'>
             <div className='test'>
           {/* <NavLink to='/' exact={true} activeClassName='active'> */}
