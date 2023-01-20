@@ -11,6 +11,7 @@ import HomePage from "./components/Homepage";
 import SongDetails from './components/Songs/SongDetails'
 import { authenticate } from './store/session';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

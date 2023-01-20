@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSongs } from '../../store/songs'
 import { NavLink } from 'react-router-dom';
+
 import './homepage.css'
 
 
@@ -31,13 +32,14 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getAllSongs())
+  }, [dispatch])
+  
     async function fetchData() {
       const response = await fetch('/api/users/');
       const responseData = await response.json();
       setUsers(responseData.users);
     }
     fetchData();
-
   }, [dispatch])
 
 
@@ -84,6 +86,8 @@ return (
           </div>
         </div>
       </div>
+
+    </section>
     </div>
     <div>
       <div className='genre-container'>

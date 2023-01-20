@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
@@ -8,6 +8,9 @@ import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
+import Waveform from '../Wavesurfer';
+
+
 
 
 const SongDetails = () => {
@@ -24,6 +27,10 @@ const SongDetails = () => {
   const [users, setUsers] = useState([]);
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
+
+
+
+
   // const [likeCount, setLikeCount] = useState(allLikes)
 
   useEffect(() => {
@@ -118,6 +125,7 @@ const handleLike = async () => {
         <div><img src={song.cover_photo} /></div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
+
         <NavLink
         to={`/users/${song.user_id}`}
         >{userNameFinder(song.user_id)}</NavLink>
@@ -127,6 +135,10 @@ const handleLike = async () => {
           controls
       />
       </div>
+      <div id="waveform"></div>
+      <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
+
+
 
       <ul>
           {errors.map((error, idx) => (
