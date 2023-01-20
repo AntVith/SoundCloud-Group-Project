@@ -31,24 +31,27 @@ const HomePage = () => {
               <div className='slider-panel'>
                 {
                   songs.map(song => (
-                    <div className='slider-eachsong'>
-                      <NavLink
-                        to={`/songs/${song.id}`}
-                        key={song.id}
-                        style={{textDecoration: 'none'}}>
-                      <div>{song.song_title}</div>
-                      </NavLink>
+                    <div className='each-song-container'>
+                      <div className='slider-eachsong'>
+                        <NavLink
+                          to={`/songs/${song.id}`}
+                          key={song.id}
+                          style={{textDecoration: 'none'}}>
+                        <div className='will-change-to-img'></div>
+                        <div>{song.song_title}</div>
+                        </NavLink>
+                      </div>
                     </div>
                   ))
                 }
               </div>
               </div>
-              <div className='gallary-slider-left'>
+              {/* <div className='gallary-slider-left'>
                 <button>Button left</button>
               </div>
               <div className='gallary-slider-right'>
                 <button>button right</button>
-              </div>
+              </div> */}
             </div>
         </div>
 
