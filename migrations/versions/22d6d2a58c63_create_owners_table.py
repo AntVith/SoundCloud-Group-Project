@@ -1,16 +1,22 @@
-"""recreate migrations
+"""create owners table
 
-Revision ID: 5131badfa437
-Revises: 
-Create Date: 2023-01-18 08:36:16.549713
+Revision ID: df5a95f879b1
+Revises:
+Create Date: 2023-01-20 16:01:58.933158
 
 """
 from alembic import op
 import sqlalchemy as sa
 
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
+
+
 # revision identifiers, used by Alembic.
-revision = '5131badfa437'
+revision = 'df5a95f879b1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,6 +37,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('songs',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -41,22 +50,30 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE songs SET SCHEMA {SCHEMA};")
+
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=100), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('comment', sa.String(length=500), nullable=True),
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['username'], ['users.username'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
+
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('songs', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'songs')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

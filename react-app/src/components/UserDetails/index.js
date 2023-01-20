@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useInsertionEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import EditUserModal from './edituserModal.js'
 import EditSongModal from './EditSongModal.js'
 import { getAUser } from '../../store/session';
+import { deleteASong } from '../../store/songs';
 import { NavLink } from 'react-router-dom';
+import './userDetails.css'
 
 
 
@@ -20,14 +22,16 @@ function User() {
   const userInfo = useSelector(state => state.session.user)
   const userData = Object.values(userInfo)
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  console.log('user data', userData)
   const userBio = userData[0]
   const userEmail = userData[1]
   const userFName = userData[2]
   const userLName = userData[4]
   const userProfilePhoto = userData[5]
   const userUsername = userData[6]
+
+
 
 
   // if(user !== userInfo){
@@ -44,7 +48,7 @@ function User() {
       console.log('this is user----', user)
       setUser(user);
     })();
-  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername]);
+  }, [userId, userBio, userEmail, userFName, userLName, userProfilePhoto, userUsername, dispatch]);
 
     if (!user) {
       return null;
@@ -53,44 +57,65 @@ function User() {
 
   // console.log(songsArr)
 
+  let message = ''
+  const handleDeletion = async (songId) => {
+    const response = await dispatch(deleteASong(songId))
+    if (response){
+      message = response.message
+    }
+  }
+
   return (
     <>
-       <div>
-        <div>
+       <div id='whole-profile-page'>
+        {/* <div>
           <strong>User Id</strong> {userId}
-        </div>
-        <div>
-          <strong>Username</strong> {user.username}
-        </div>
-        <div>
-          <strong>Email</strong> {user.email}
-        </div>
+        </div> */}
+        <div id ='userDetails-card'>
+            <div id='userDetails-data'>
+                <div>
+                  <strong>{user.username}</strong>
+                </div>
+                <div>
+                  <strong>{user.email}</strong>
+                </div>
+            </div>
+            <div id='profile-edit-button'>
+                <div>{ userInfo.id === user.id &&
+              <OpenModalButton
+                modalComponent={<EditUserModal user={{ user }} />}
+                buttonText={'Edit Profile'}
+              />
+              }</div>
+              </div>
+          </div>
+        <div>Your Tracks</div>
         <div>
           {userSongs.map(eachSong => (
-          <div>
-          <div>
-            <div key={eachSong.id}> <NavLink
+
+          <div className='song-card-profile-page'>
+            <div  key={eachSong.id}> <NavLink
             to={`/songs/${eachSong.id}`}>
+            <div id='song-cover-photo'>{eachSong.cover_photo}</div>
             <div key={eachSong.id}>{eachSong.song_title}</div>
             </NavLink></div>
-            { userInfo.id === user.id &&
-            <OpenModalButton
-                 modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
-                 buttonText={'Edit'}
-                />
-            }
+            <div id='each-song-edit-delete'>
+                { userInfo.id === user.id &&
+                  <div>
+                  <OpenModalButton
+                       modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
+                       buttonText={'Edit'}
+                      />
+                      <button onClick={() => handleDeletion(eachSong.id)}>Delete</button>
+                  </div>
+                }
+              </div>
           </div>
 
-            </div>
           ))}
         </div>
         </div>
-       { userInfo.id === user.id &&
-      <OpenModalButton
-        modalComponent={<EditUserModal user={{ user }} />}
-        buttonText={'Edit'}
-      />
-      }
+
     </>
   );
 }

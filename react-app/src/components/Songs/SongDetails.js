@@ -4,7 +4,7 @@ import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
 import { postALike } from '../../store/likes';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
@@ -24,6 +24,7 @@ const SongDetails = () => {
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
+  const [users, setUsers] = useState([]);
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
 
@@ -36,10 +37,27 @@ const SongDetails = () => {
     dispatch(getOneSong(id))
     dispatch(getAllComments(id))
     dispatch(getLikesBySongId(id))
+
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
   }, [id, dispatch])
+
 
   if (!songData.length){
     return null
+  }
+  if(!users.length){
+    return  null
+  }
+
+  function userNameFinder(id){
+    const usersFound = users.filter(user => user.id === id)
+    const usernameFound = usersFound[0].username
+    return usernameFound
   }
 
 
@@ -48,7 +66,7 @@ const SongDetails = () => {
     e.preventDefault()
     const payload = {
       'song_id': Number(id),
-      'username': userObj.username,
+      'user_id': userObj.id,
       'comment': newComment
     }
     const postedComment = await dispatch(postAComment(id, payload))
@@ -85,12 +103,15 @@ const SongDetails = () => {
 
 
 const handleLike = async () => {
+  if(!userObj){
+   return  history.push('/login')
+  }
   const payload = {
     'songs': Number(id),
     'users': userObj.id
   }
 
-  const response = await dispatch(postALike(payload,id))
+   dispatch(postALike(payload,id))
   // console.log("llllll",response)
   // setLikeCount(response.likes)
 }
@@ -104,9 +125,10 @@ const handleLike = async () => {
         <div><img src={song.cover_photo} /></div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
-        <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
 
-
+        <NavLink
+        to={`/users/${song.user_id}`}
+        >{userNameFinder(song.user_id)}</NavLink>
         <ReactPlayer
           url={song.song_file}
           autoplay
@@ -114,6 +136,8 @@ const handleLike = async () => {
       />
       </div>
       <div id="waveform"></div>
+      <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
+
 
 
       <ul>
@@ -146,18 +170,17 @@ const handleLike = async () => {
 
               <div>
                 <div>comment: {comment.comment}</div>
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                   <button
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
                 </button> }
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
                 />}
                </div>
-
 
 
           ))
