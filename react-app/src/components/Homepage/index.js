@@ -1,6 +1,6 @@
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllSongs } from '../../store/songs'
 import { NavLink } from 'react-router-dom';
 import './homepage.css'
@@ -10,12 +10,31 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const songsObj = useSelector(state => state.songs.allSongs);
   const songs = Object.values(songsObj)
+  const [users, setUsers] = useState([]);
+
+  console.log("SONGS----",songs)
+  // console.log("SONGSOBJ----",songsObj)
 
 
   useEffect(() => {
     dispatch(getAllSongs())
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
+
   }, [dispatch])
 
+
+
+  console.log("USERSS", users)
+
+
+  if(!users.length){
+    return null
+  }
 
 
   return (
@@ -39,6 +58,7 @@ const HomePage = () => {
                           style={{textDecoration: 'none'}}>
                         <div className='will-change-to-img'></div>
                         <div>{song.song_title}</div>
+                        <div>{users[song.user_id - 1].username}</div>
                         </NavLink>
                       </div>
                     </div>
