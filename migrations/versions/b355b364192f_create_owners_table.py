@@ -1,6 +1,6 @@
 """create owners table
 
-Revision ID: b355b364192f
+Revision ID: df5a95f879b1
 Revises:
 Create Date: 2023-01-19 19:25:06.976301
 
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'b355b364192f'
+revision = 'df5a95f879b1'
 down_revision = None
 branch_labels = None
 depends_on = None
