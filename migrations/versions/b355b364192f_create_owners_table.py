@@ -1,8 +1,8 @@
-"""recreate migrations
+"""create owners table
 
-Revision ID: 5131badfa437
+Revision ID: b355b364192f
 Revises: 
-Create Date: 2023-01-18 08:36:16.549713
+Create Date: 2023-01-19 19:25:06.976301
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5131badfa437'
+revision = 'b355b364192f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,8 +53,8 @@ def upgrade():
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('songs', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'songs')
     )
     # ### end Alembic commands ###

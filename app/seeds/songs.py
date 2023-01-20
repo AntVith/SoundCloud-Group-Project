@@ -2,11 +2,11 @@ from app.models import db, Song, environment, SCHEMA
 
 def seed_songs():
   demo_song = Song(
-    user_id = 1, song_title='song_title1', genre='genre1', cover_photo='cover_photo1', song_file='song_file1')
+    user_id = 1, song_title='Melody', genre='Classical', cover_photo='https://soundcrook.s3.us-west-1.amazonaws.com/download.jpeg', song_file='https://soundcrook.s3.amazonaws.com/baf4dd2de4c44c518de7bc415ea9599c.mp3')
   demo_song2 = Song(
-    user_id = 2, song_title='song_title2', genre='genre2', cover_photo='cover_photo2',song_file='song_file2')
+    user_id = 2, song_title='Ice Spice Freestyle', genre='Hip-Hop', cover_photo='https://soundcrook.s3.us-west-1.amazonaws.com/download.jpeg',song_file='https://soundcrook.s3.amazonaws.com/baf4dd2de4c44c518de7bc415ea9599c.mp3')
   demo_song3 = Song(
-    user_id = 3, song_title='song_title3', genre='genre3', cover_photo='cover_photo3',song_file='song_file3')
+    user_id = 3, song_title='Guitar', genre='Instrumental', cover_photo='https://soundcrook.s3.us-west-1.amazonaws.com/download.jpeg',song_file='https://soundcrook.s3.amazonaws.com/baf4dd2de4c44c518de7bc415ea9599c.mp3')
 
   db.session.add(demo_song)
   db.session.add(demo_song2)
