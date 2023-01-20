@@ -15,13 +15,12 @@ class Song(db.Model):
   cover_photo = db.Column(db.String(255), nullable=True)
   song_file = db.Column(db.String(255), nullable=True)
 
-  comments = db.relationship("Comment", back_populates='song')
+  comments = db.relationship("Comment",cascade='all, delete-orphan', back_populates='song')
   user = db.relationship('User', back_populates='songs')
   song_likes = db.relationship(
     "User",
     secondary=likes,
-    back_populates="user_likes",
-    cascade="all, delete"
+    back_populates="user_likes"
   )
 
 

@@ -24,24 +24,38 @@ def all_songs():
 def new_song():
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('made it here')
+
 
     if "songfile" not in request.files:
+        print('song file took an L')
         return {"errors": "song required"}, 400
 
+    if "coverphoto" not in request.files:
+        print("!!!!", request.files)
+        print('cover photo took an L')
+        return {"errors": "photo required"}, 400
+
+    print('hello')
+    coverphoto = request.files["coverphoto"]
     songfile = request.files["songfile"]
 
     if not allowed_file(songfile.filename):
         return {"errors": "file type not permitted"}, 400
+
+    if not allowed_file(coverphoto.filename):
+        return {"errors": "file type not permitted"}, 400
+
     print('pre validation--------')
 
     if form.validate_on_submit():
         print('past validation--------')
-
+        coverphoto.filename = get_unique_filename(coverphoto.filename)
         songfile.filename = get_unique_filename(songfile.filename)
 
-        print('str version' , str(songfile))
-        print('file', songfile)
-
+        # print('str version' , str(songfile))
+        # print('file', songfile)
+        upload2 = upload_file_to_s3(coverphoto)
         upload = upload_file_to_s3(songfile)
         print('upload--------', upload)
         if "url" not in upload:
@@ -51,10 +65,12 @@ def new_song():
             return upload, 400
 
         url = upload["url"]
+        url2 = upload2["url"]
         # flask_login allows us to get the current user from the request
         new_song = Song()
         form.populate_obj(new_song)
         new_song.song_file = url
+        new_song.cover_photo = url2
 
         db.session.add(new_song)
         db.session.commit()
@@ -106,7 +122,7 @@ def post_comment(id):
         db.session.commit()
 
         return new_comment.to_dict(), 200
-        
+
 
     if form.errors:
         return {
@@ -123,24 +139,17 @@ def post_comment(id):
 @login_required
 def update_comment(comment_id):
 
-    # new_obj = {}
 
     old_comment = Comment.query.get(comment_id)
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        dummy_info = Comment()
+        form.populate_obj(old_comment)
 
-        form.populate_obj(dummy_info)
-        old_comment_id = old_comment.id
-        new_comment = dummy_info
-        new_comment.id = old_comment_id
-        # current_comment = new_obj
-        db.session.delete(old_comment)
-        db.session.add(new_comment)
+        db.session.add(old_comment)
         db.session.commit()
-        return new_comment.to_dict(), 201
+        return old_comment.to_dict(), 201
     else:
         return form.errors
 
@@ -199,20 +208,17 @@ def all_likes(id):
 @login_required
 def update_song(song_id):
 
-    old_song = Song.query.get(song_id)
+    current_song = Song.query.get(song_id)
     form = SongForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        new_song = Song()
 
-        form.populate_obj(new_song)
-        old_song_id = old_song.id
-        new_song.id = old_song_id
-        db.session.delete(old_song)
-        db.session.add(new_song)
+        form.populate_obj(current_song)
+        db.session.add(current_song)
         db.session.commit()
-        return new_song.to_dict(), 201
+        return current_song.to_dict(), 201
+
 # create like for a song by song-id
 @song_routes.route('/<int:id>/likes', methods=['POST'])
 def post_like(id):
@@ -234,3 +240,13 @@ def post_like(id):
             selected_song.song_likes.append(selected_user)
             db.session.commit()
             return all_likes(id)
+
+# delete song by id
+@song_routes.route('/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    deleted_song = Song.query.get(song_id)
+    db.session.delete(deleted_song)
+    db.session.commit()
+
+    return {"message": 'successfully deleted'}

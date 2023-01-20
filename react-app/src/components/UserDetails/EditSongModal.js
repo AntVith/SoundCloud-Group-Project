@@ -83,6 +83,7 @@ function EditSongModal(currentSongId) {
         <div>
           <input
             type='text'
+            required
             onChange={(e) => setSongTitle(e.target.value)}
             value={song_title}
             placeholder='Song Title'

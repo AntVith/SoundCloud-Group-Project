@@ -19,13 +19,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    comments = db.relationship("Comment", cascade="all, delete-orphan", back_populates='user')
-    songs = db.relationship("Song",cascade="all, delete-orphan", back_populates='user' )
+    comments = db.relationship("Comment", cascade='all, delete-orphan', back_populates='user')
+    songs = db.relationship("Song", back_populates='user' )
     user_likes = db.relationship(
         "Song",
         secondary=likes,
-        back_populates='song_likes',
-        cascade="all, delete"
+        back_populates='song_likes'
     )
     @property
     def password(self):
