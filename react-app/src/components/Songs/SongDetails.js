@@ -59,7 +59,7 @@ const SongDetails = () => {
     e.preventDefault()
     const payload = {
       'song_id': Number(id),
-      'username': userObj.username,
+      'user_id': userObj.id,
       'comment': newComment
     }
     const postedComment = await dispatch(postAComment(id, payload))
@@ -158,12 +158,12 @@ const handleLike = async () => {
 
               <div>
                 <div>comment: {comment.comment}</div>
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                   <button
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
                 </button> }
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
