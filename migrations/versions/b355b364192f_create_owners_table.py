@@ -1,8 +1,8 @@
-"""please work
+"""create owners table
 
-Revision ID: df5a95f879b1
+Revision ID: b355b364192f
 Revises:
-Create Date: 2023-01-15 19:28:22.731546
+Create Date: 2023-01-19 19:25:06.976301
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'df5a95f879b1'
+revision = 'b355b364192f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -66,8 +66,8 @@ def upgrade():
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('songs', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['songs'], ['songs.id'], ),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'songs')
     )
     if environment == "production":

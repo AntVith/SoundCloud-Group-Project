@@ -5,6 +5,8 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,11 +17,19 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(first_name, last_name, username, email, password));
       if (data) {
         setErrors(data)
       }
     }
+  };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -50,10 +60,31 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
+        <label>First Name</label>
+        <input
+          type='text'
+          name='First Name'
+          required
+          onChange={updateFirstName}
+          value={first_name}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type='text'
+          name='Last Name'
+          required
+          onChange={updateLastName}
+          value={last_name}
+        ></input>
+      </div>
+      <div>
         <label>User Name</label>
         <input
           type='text'
           name='username'
+          required
           onChange={updateUsername}
           value={username}
         ></input>
@@ -63,6 +94,7 @@ const SignUpForm = () => {
         <input
           type='text'
           name='email'
+          required
           onChange={updateEmail}
           value={email}
         ></input>
@@ -72,6 +104,7 @@ const SignUpForm = () => {
         <input
           type='password'
           name='password'
+          required
           onChange={updatePassword}
           value={password}
         ></input>

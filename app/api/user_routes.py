@@ -1,12 +1,13 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
+from ..forms.users_form import UserForm
 
 user_routes = Blueprint('users', __name__)
 
 
 @user_routes.route('/')
-@login_required
+# @login_required
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -23,3 +24,21 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>', methods = ['PUT'])
+@login_required
+def update_song(id):
+    current_user = User.query.get(id)
+
+    if not current_user:
+        return {'errors': 'User not found'}, 404
+
+    form = UserForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        form.populate_obj(current_user)
+
+        db.session.add(current_user)
+        db.session.commit()
+        return current_user.to_dict(), 201
