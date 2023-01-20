@@ -72,6 +72,7 @@ function UploadNewSong() {
         <input
           type='file'
           accept="image/*"
+          required
           onChange={(e) => setCover_photo(e.target.files[0])}
           placeholder='Cover Photo'
           name='coverphoto'
