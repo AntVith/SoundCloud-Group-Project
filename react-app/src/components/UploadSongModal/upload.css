@@ -1,0 +1,13 @@
+.header-upload{
+    margin-top: 12%;
+    margin-bottom: 10%;
+    color: orange;
+    display: flex;
+    justify-content: center;
+}
+
+.upload-form-modal-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

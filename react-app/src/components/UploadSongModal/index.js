@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createSong } from '../../store/songs'
 import { useSelector } from "react-redux";
+import './upload.css'
 
 
 
@@ -60,14 +61,16 @@ function UploadNewSong() {
   }
 
   return (
+  <>
+  <h1 className='header-upload'>Add a Song</h1>
   <form onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
-    <div>
-      <h1>Add a Song</h1>
+    <div className="upload-form-modal-contents">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+
       <div>
         <input
           type='file'
@@ -130,6 +133,7 @@ function UploadNewSong() {
       </div>
     </div>
   </form>
+  </>
   )
 }
 export default UploadNewSong
