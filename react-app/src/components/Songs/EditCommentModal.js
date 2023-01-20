@@ -9,7 +9,7 @@ function EditCommentModal(currentCommentId) {
     const dispatch = useDispatch()
     const history = useHistory()
     const [newComment, setNewComment] = useState('')
-    const currentUser = useSelector(state => state.session?.user.username)
+    const currentUser = useSelector(state => state.session?.user.id)
     const currentSong = useSelector(state => state.songs?.singleSong.song.id)
     const [errors, setErrors] = useState([])
     const {closeModal} = useModal()
@@ -26,7 +26,7 @@ const handleSubmit = async (e) => {
         'comment': newComment,
         'id': commentId,
         'song_id': currentSong,
-        'username': currentUser
+        'user_id': currentUser
 
       }
       const editedComment = await dispatch(updateAComment(payload, commentId))
