@@ -46,8 +46,12 @@ const SongDetails = () => {
   if(!users.length){
     return  null
   }
-  console.log('users', users)
 
+  function userNameFinder(id){
+    const usersFound = users.filter(user => user.id === id)
+    const usernameFound = usersFound[0].username
+    return usernameFound
+  }
 
 
 
@@ -116,7 +120,7 @@ const handleLike = async () => {
         <div>{song.song_title}</div>
         <NavLink
         to={`/users/${song.user_id}`}
-        >{users[song.user_id - 1].username}</NavLink>
+        >{userNameFinder(song.user_id)}</NavLink>
         <ReactPlayer
           url={song.song_file}
           autoplay
@@ -165,7 +169,6 @@ const handleLike = async () => {
                  buttonText={'Edit'}
                 />}
                </div>
-
 
 
           ))

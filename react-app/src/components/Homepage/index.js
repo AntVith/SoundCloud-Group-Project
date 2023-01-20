@@ -47,6 +47,11 @@ const HomePage = () => {
     return null
   }
 
+  function userNameFinder(id){
+    const usersFound = users.filter(user => user.id === id)
+    const usernameFound = usersFound[0].username
+    return usernameFound
+  }
 
 return (
 <section className='hompage-container'>
@@ -69,7 +74,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -98,7 +103,7 @@ return (
                             style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -118,7 +123,7 @@ return (
           <div className='song-gallary'>
             <div className='slider-panel'>
                 {
-                  soulSongs.map(song => (
+                  rnbSongs.map(song => (
                     <div className='each-song-container'>
                       <div className='slider-eachsong'>
                         <NavLink
@@ -127,7 +132,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -156,7 +161,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -185,7 +190,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -214,7 +219,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -243,7 +248,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -272,7 +277,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -301,7 +306,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -330,7 +335,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -359,7 +364,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -388,7 +393,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -417,7 +422,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -446,7 +451,7 @@ return (
                           style={{textDecoration: 'none'}}>
                           <div className='will-change-to-img'></div>
                           <div>{song.song_title}</div>
-                          <div>{users[song.user_id - 1].username}</div>
+                          <div>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
