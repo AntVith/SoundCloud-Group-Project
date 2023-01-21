@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getOneSong } from '../../store/songs'
 import { getAllComments, postAComment, deleteAComment } from '../../store/comments';
 import { getLikesBySongId } from '../../store/likes';
@@ -8,6 +8,9 @@ import { useParams, useHistory, NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
+import Waveform from '../Wavesurfer';
+
+
 
 
 const SongDetails = () => {
@@ -24,6 +27,10 @@ const SongDetails = () => {
   const [users, setUsers] = useState([]);
   const [newComment, setNewComment] = useState('')
   const [errors, setErrors] = useState([])
+
+
+
+
   // const [likeCount, setLikeCount] = useState(allLikes)
 
   useEffect(() => {
@@ -46,8 +53,12 @@ const SongDetails = () => {
   if(!users.length){
     return  null
   }
-  console.log('users', users)
 
+  function userNameFinder(id){
+    const usersFound = users.filter(user => user.id === id)
+    const usernameFound = usersFound[0].username
+    return usernameFound
+  }
 
 
 
@@ -55,7 +66,7 @@ const SongDetails = () => {
     e.preventDefault()
     const payload = {
       'song_id': Number(id),
-      'username': userObj.username,
+      'user_id': userObj.id,
       'comment': newComment
     }
     const postedComment = await dispatch(postAComment(id, payload))
@@ -114,15 +125,20 @@ const handleLike = async () => {
         <div><img src={song.cover_photo} /></div>
         <div>{song.genre}</div>
         <div>{song.song_title}</div>
+
         <NavLink
         to={`/users/${song.user_id}`}
-        >{users[song.user_id - 1].username}</NavLink>
+        >{userNameFinder(song.user_id)}</NavLink>
         <ReactPlayer
           url={song.song_file}
           autoplay
           controls
       />
       </div>
+      <div id="waveform"></div>
+      <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
+
+
 
       <ul>
           {errors.map((error, idx) => (
@@ -154,18 +170,17 @@ const handleLike = async () => {
 
               <div>
                 <div>comment: {comment.comment}</div>
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                   <button
                 onClick={() => handleDeletion(comment.id)}
                 >Delete
                 </button> }
-                {userObj?.username === comment.username &&
+                {userObj?.id === comment.user_id &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
                 />}
                </div>
-
 
 
           ))

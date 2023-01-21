@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton'
 import UploadNewSong from '../UploadSongModal';
+
 import './navbar.css'
 
 
@@ -18,7 +19,7 @@ function NavBar({loaded}) {
     <>
     <nav className='nav'>
       <div className='header'>
-      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
+      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
           <div className='homelink-container'>
             <div className='test'>
           {/* <NavLink to='/' exact={true} activeClassName='active'> */}
@@ -62,18 +63,34 @@ function NavBar({loaded}) {
     );
   } else {
     sessionLinks = (
-      <>
-    <div>
-      <NavLink to='/login' exact={true} activeClassName='active'>
-        Login
-      </NavLink>
+<>
+<nav className='nav'>
+  <div className='header'>
+    <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
+      <div className='homelink-container'>
+        <div className='test'>
+          <i class="fa-brands fa-soundcloud fa-2x"></i>
+        </div>
+        <div className='homeWord'>
+          <p className='word'>Home</p>
+        </div>
+      </div>
+    </NavLink>
+    <div className='header-right'>
+      <div className='login-nav'>
+        <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
+          Login
+        </NavLink>
+      </div>
+      <div className='sign-up-nav'>
+        <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
+          Sign Up
+        </NavLink>
+      </div>
     </div>
-    <div>
-      <NavLink to='/sign-up' exact={true} activeClassName='active'>
-        Sign Up
-      </NavLink>
-    </div>
-      </>
+  </div>
+</nav>
+</>
     )
   }
 

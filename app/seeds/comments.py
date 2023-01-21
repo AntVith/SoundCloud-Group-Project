@@ -4,15 +4,15 @@ from app.models import db, Comment, environment, SCHEMA
 # Adds a comment1 user, you can add other users here if you want
 def seed_comments():
     comment1 = Comment(
-        song_id=1,  username= 'Demo', comment = 'Amazing song')
+        song_id=1,  user_id= 1, comment = 'Amazing song')
     comment2 = Comment(
-        song_id=2,  username= 'marnie', comment = 'Just terrible')
+        song_id=2,  user_id= 2, comment = 'Just terrible')
     comment3 = Comment(
-        song_id=3,  username= 'bobbie', comment = 'Pretty average')
+        song_id=3,  user_id= 3, comment = 'Pretty average')
     comment4 = Comment(
-        song_id=3,  username= 'bobbie', comment = 'Changed my mind, terrible')
+        song_id=3,  user_id= 3, comment = 'Changed my mind, terrible')
     comment5 = Comment(
-        song_id=3,  username= 'marnie', comment = 'Didn\'t listen')
+        song_id=3,  user_id= 2, comment = 'Didn\'t listen')
 
     db.session.add(comment1)
     db.session.add(comment2)
