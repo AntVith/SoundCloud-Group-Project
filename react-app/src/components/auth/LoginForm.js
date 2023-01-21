@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -36,35 +37,43 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
+    <form  id='login-form-whole-div' onSubmit={onLogin}>
+
+      <img id='splash-image-login' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ5O6aTHpvERBGPBblrlKP3D9WIeJ5zOictA&usqp=CAU'
+      />
+      <div id='login-form-details-part'>
+      <h1 id='site-name-label'>SoundCrook</h1>
+      <h2 id='login-title-label'>Login</h2>
+      <div id='error-message-login'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div   key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div id='email-login-form'>
+        <label htmlFor='email' id='email-label-login'>Email</label>
         <input
           name='email'
           type='text'
           required
           placeholder='Email'
+          id='email-input-field-login'
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div id='password-login-form'>
+        <label htmlFor='password' id='password-label-login'>Password</label>
         <input
           name='password'
           type='password'
           placeholder='Password'
+          id='password-input-field-login'
           value={password}
           required
           onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-        <button onClick={demoLogin} type='submit'>Demo User</button>
+        /></div>
+        <button id='submit-button-login' type='submit'>Login</button>
+        <button  id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
       </div>
     </form>
   );
