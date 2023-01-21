@@ -61,11 +61,12 @@ function UploadNewSong() {
   }
 
   return (
-  <>
-  <h1 className='header-upload'>Add a Song</h1>
-  <div className='upload-form-modal-contents'>
+  <div className= 'entire-upload-song-form-modal'>
+
     <form onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
 
+    <div className='upload-form-modal-contents'>
+    <h1 className='header-upload'>Add a Song</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -80,6 +81,8 @@ function UploadNewSong() {
           onChange={(e) => setCover_photo(e.target.files[0])}
           placeholder='Cover Photo'
           name='coverphoto'
+          id='upload-form-cover-photo'
+          className='song-upload-button'
         />
       </div>
       <div>
@@ -87,6 +90,8 @@ function UploadNewSong() {
           onChange={(e) => setGenre(e.target.value)}
           value={genre}
           name='genre'
+          id='upload-form-genre'
+          className='Select-Upload-Song-Input'
           >
             <option value="Classical">Classical</option>
             <option value="Country">Country</option>
@@ -115,6 +120,8 @@ function UploadNewSong() {
           onChange={(e) => setSong_file(e.target.files[0])}
           placeholder='Song file'
           name='songfile'
+          id= 'upload-form-song_file'
+          className='song-upload-button'
         />
       </div>
       <div>
@@ -125,18 +132,19 @@ function UploadNewSong() {
           value={song_title}
           placeholder='Song Title'
           name='song_title'
+          id= 'upload-form-song_title'
+          className='Upload-Song-Input'
         />
       </div>
       <div>
-        <button className='submit-button' type="submit"
+        <button className='song-upload-button' type="submit"
         disabled={isLoading}
         >Submit</button>
         {(imageLoading)&& <p>Loading...</p>}
       </div>
-
+      </div>
     </form>
   </div>
-  </>
   )
 }
 export default UploadNewSong

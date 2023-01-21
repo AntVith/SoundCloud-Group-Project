@@ -1,26 +1,50 @@
+
+
+
+.upload-form-modal-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: space-between;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: aqua;
+    width: 90%
+
+
+ }
+
 .header-upload{
     margin-top: 12%;
-    margin-bottom: 10%;
+    margin-bottom: 7vh;
     color: orange;
     display: flex;
     justify-content: center;
 }
 
-.upload-form-modal-contents {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 10vw;
-    margin-right: 10vw;
 
 
+
+#upload-form-cover-photo{
+    margin-bottom: 5.5vh;
+    width: 90%;
+
+}
+
+#upload-form-genre{
+    margin-bottom: 5.5vh;
+    width: 90%;
  }
 
- /* .upload-form-modal-contents {
-    display: inline-block;
-    margin-left: 13vw;
-    padding-top: 3vw;
-    padding-bottom: 3vw;
+ #upload-form-song_file{
+    margin-bottom: 5.5vh;
+    width: 90%;
+ }
 
- } */
+
+
+ #upload-form-song_title{
+    margin-bottom: 5.5vh;
+    width: 90%;
+ }
