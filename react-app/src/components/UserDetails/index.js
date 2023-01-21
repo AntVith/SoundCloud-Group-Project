@@ -67,17 +67,19 @@ function User() {
 
   return (
     <>
+    <div id='test-test'></div>
        <div id='whole-profile-page'>
-        {/* <div>
-          <strong>User Id</strong> {userId}
-        </div> */}
         <div id ='userDetails-card'>
             <div id='userDetails-data'>
-                <div>
-                  <strong>{user.username}</strong>
-                </div>
-                <div>
-                  <strong>{user.email}</strong>
+              <img id='user-profile-photo'src={user.profile_photo} alt='profile-page-photo'/>
+                <div id='user-username-email-bio'>
+                      <div id='user-page-username'>
+                       {user.username}
+                      </div>
+                      <div id='user-page-email'>
+                        {user.email}
+                      </div>
+                      <div>{user.bio}</div>
                 </div>
             </div>
             <div id='profile-edit-button'>
@@ -89,27 +91,49 @@ function User() {
               }</div>
               </div>
           </div>
-        <div>Your Tracks</div>
-        <div>
+        <div id='user-page-your-tracks'>
+            <div id='user-page-your-tracks-text'>Tracks</div>
+          </div>
+
+        <div id='song-card-all'>
           {userSongs.map(eachSong => (
 
-          <div className='song-card-profile-page'>
-            <div  key={eachSong.id}> <NavLink
-            to={`/songs/${eachSong.id}`}>
-            <div id='song-cover-photo'>{eachSong.cover_photo}</div>
-            <div key={eachSong.id}>{eachSong.song_title}</div>
-            </NavLink></div>
-            <div id='each-song-edit-delete'>
-                { userInfo.id === user.id &&
-                  <div>
-                  <OpenModalButton
-                       modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
-                       buttonText={'Edit'}
-                      />
-                      <button onClick={() => handleDeletion(eachSong.id)}>Delete</button>
-                  </div>
-                }
+          <div className='song-card-profile-page'key={eachSong.id}>
+             <NavLink
+            to={`/songs/${eachSong.id}`}
+            style={{textDecoration:'none'}}
+            id='song-card-exact'
+            >
+              <div id='song-detail-with-cover'>
+                    <img  id='each-song-cover-photo' src={eachSong.cover_photo} alt='each-song-cover-photo'/>
+                    <div id='song-detail-no-cover'>
+                      <div id='each-song-title-and-buttons'>
+                        <div id='each-song-title' key={eachSong.id}>{eachSong.song_title}</div>
+                                <div>
+                              { userInfo.id === user.id &&
+                                <div id='each-song-edit-delete'>
+                                        <div id='each-song-edit-button'>
+                                      <OpenModalButton
+                                         modalComponent={<EditSongModal currentSongId={ `${eachSong.id}` } />}
+                                           buttonText={'Edit'}
+
+                                         />
+                                         </div>
+                                          <div >
+                                          <button id='each-song-delete-button' onClick={() => handleDeletion(eachSong.id)}>Delete</button>
+                                       </div>
+                                </div>
+                              }
+                              </div>
+                          </div>
+                        <img id='wave-image' src='https://i.stack.imgur.com/MXAzC.png' />
+                    </div>
               </div>
+            </NavLink>
+
+
+
+
           </div>
 
           ))}
