@@ -72,18 +72,26 @@ function User() {
         <div id ='userDetails-card'>
             <div id='userDetails-data'>
               <img id='user-profile-photo'src={user.profile_photo} alt='profile-page-photo'/>
-                <div id='user-username-email-bio'>
-                      <div id='user-page-username'>
-                       {user.username}
+
+                      <div id='user-username-email-bio-label'>
+                        <div id='username-and-email'>
+                                <div id='user-page-username'>
+                                  {user.username}
+                                </div>
+                                <div id='user-page-email'>
+                                 {user.email}
+                                </div>
+                            </div>
+                            <div id='user-bio-section'>
+                              <div id='bio-title'>Biography:</div>
+                              <div id='actual-bio-info'>{user.bio}</div>
+                              </div>
                       </div>
-                      <div id='user-page-email'>
-                        {user.email}
-                      </div>
-                      <div>{user.bio}</div>
-                </div>
+
+
             </div>
             <div id='profile-edit-button'>
-                <div>{ userInfo.id === user.id &&
+                <div id='userpage-actual-edit-button'>{ userInfo.id === user.id &&
               <OpenModalButton
                 modalComponent={<EditUserModal user={{ user }} />}
                 buttonText={'Edit Profile'}
