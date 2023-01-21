@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
 import Waveform from '../Wavesurfer';
+import './songdetails.css'
 
 
 
@@ -115,87 +116,78 @@ const handleLike = async () => {
   // console.log("llllll",response)
   // setLikeCount(response.likes)
 }
-
-
   const song = songData[0]
 
-  return (
-    <section>
-      <div id= 'song-container'>
-        <div><img src={song.cover_photo} /></div>
-        <div>{song.genre}</div>
-        <div>{song.song_title}</div>
-
-        <NavLink
-        to={`/users/${song.user_id}`}
-        >{userNameFinder(song.user_id)}</NavLink>
-        <ReactPlayer
-          url={song.song_file}
-          autoplay
-          controls
-      />
-      </div>
-      <div id="waveform"></div>
-      <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
 
 
+return (
+<section>
+<div className='song-detail-page-container'>
+  <div id= 'song-container'>
+    <Waveform className='wave-form-player' urlGetter={song.song_file}/>
 
+    {/* <div className='img-container'> */}
+      <img className='song-detail-img' src={song.cover_photo} />
+    {/* </div> */}
+
+      {/* <div>{song.genre}</div>
+        <div>{song.song_title}</div> */}
+        {/* <NavLink
+          to={`/users/${song.user_id}`}>{userNameFinder(song.user_id)}
+        </NavLink> */}
+  </div>
+  {/* <div id="waveform"></div> */}
+      {/* <div
+        className='parent-component'><Waveform urlGetter={song.song_file}/>
+      </div> */}
       <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+        {errors.map((error, idx) => (
+        <li key={idx}>{error}</li>
+        ))}
+      </ul>
+      {userObj &&
+        <div>
+          <input
+          type='text' required
+          onChange={(e) => setNewComment(e.target.value)}
+          value={newComment}
+          placeholder='Write a Comment'></input>
+          <button
+          onClick={handleSubmit}
+          disabled={!newComment}
+          >Post Comment</button>
+        </div>
+      }
+      {message.length > 0 &&
+        <div>{message}</div>
+      }
 
-          {userObj &&
-          <div>
-            <input
-            type='text' required
-            onChange={(e) => setNewComment(e.target.value)}
-            value={newComment}
-            placeholder='Write a Comment'></input>
-            <button
-            onClick={handleSubmit}
-            disabled={!newComment}
-            >Post Comment</button>
-            </div>
-          }
-
-          {message.length > 0 &&
-            <div>{message}</div>
-          }
-
-      <div id = 'comment-container'>
-      {
-          comments.map(comment => (
-
-              <div>
-                <div>comment: {comment.comment}</div>
-                {userObj?.id === comment.user_id &&
-                  <button
-                onClick={() => handleDeletion(comment.id)}
-                >Delete
-                </button> }
-                {userObj?.id === comment.user_id &&
+<div id = 'comment-container'>
+  {
+  comments.map(comment => (
+      <div>
+        <div>comment: {comment.comment}</div>
+          {userObj?.id === comment.user_id &&
+          <button
+            onClick={() => handleDeletion(comment.id)}>Delete</button>}
+              {userObj?.id === comment.user_id &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
-                />}
-               </div>
-
-
-          ))
-
-        }
-
-
+              />}
       </div>
-      <div id = 'likes-container'>
-      <div>likes: {likes.totalLikes}</div>
-      <button onClick={handleLike}>Like</button>
-      </div>
+    ))
+  }
+</div>
+<div id = 'likes-container'>
+  <div>likes: {likes.totalLikes}</div>
+    <button onClick={handleLike}>Like</button>
+</div>
 
-    </section>
-  );
+</div>
+</section>
+
+);
 }
 
 export default SongDetails;

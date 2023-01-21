@@ -4,9 +4,10 @@
 }
 
 .genre-container{
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   margin-bottom: 20px;
   display: block;
+  border-bottom: 1.5px solid #f2f2f2;
 
 }
 
@@ -15,18 +16,51 @@
   flex-wrap: nowrap;
   overflow-x: scroll;
   scroll-margin: 200px;
+  margin-bottom: 35px;
+  overflow-x: hidden;
+
+}
+
+.slider-panel:hover{
+  overflow-x: scroll;
 }
 
 .slider-eachsong{
   flex: 0 0 auto;
   margin-right: 10px;
+
+
   /* border: 1px solid red; */
   /* width: 180px;
   height: 180px; */
 }
 
 .will-change-to-img{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 180px;
   height: 180px;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.genre-word{
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.home-song-title{
+  text-decoration: none;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+  font-size: 15px;
+}
+
+.home-user-name{
+  text-decoration: none;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-size: 13px;
+  color: #999;
+  margin-top: 6px;
 }
