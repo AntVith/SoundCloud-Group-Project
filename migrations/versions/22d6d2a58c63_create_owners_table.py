@@ -1,20 +1,22 @@
 """create owners table
 
-Revision ID: b355b364192f
+Revision ID: df5a95f879b1
 Revises:
-Create Date: 2023-01-19 19:25:06.976301
+Create Date: 2023-01-20 16:01:58.933158
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
+
 # revision identifiers, used by Alembic.
-revision = 'b355b364192f'
+revision = 'df5a95f879b1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -54,10 +56,10 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('song_id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=100), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('comment', sa.String(length=500), nullable=True),
     sa.ForeignKeyConstraint(['song_id'], ['songs.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['username'], ['users.username'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
