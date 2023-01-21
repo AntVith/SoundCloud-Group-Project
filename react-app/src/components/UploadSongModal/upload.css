@@ -6,36 +6,21 @@
     justify-content: center;
 }
 
-/* .upload-form-modal-contents {
+.upload-form-modal-contents {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-left: 11vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+
+
+ }
+
+ /* .upload-form-modal-contents {
+    display: inline-block;
+    margin-left: 13vw;
     padding-top: 3vw;
     padding-bottom: 3vw;
 
  } */
-
-.upload-form-modal-contents {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-
-
-}
-
-
-.upload-form-modal-contents>button{
-    background-color: orange;
-    border: none;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    border-radius: 10%;
-}

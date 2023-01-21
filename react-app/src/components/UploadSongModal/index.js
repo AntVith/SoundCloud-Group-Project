@@ -63,7 +63,8 @@ function UploadNewSong() {
   return (
   <>
   <h1 className='header-upload'>Add a Song</h1>
-  <form className="upload-form-modal-contents" onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
+  <div className='upload-form-modal-contents'>
+    <form onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
 
         <ul>
           {errors.map((error, idx) => (
@@ -132,7 +133,9 @@ function UploadNewSong() {
         >Submit</button>
         {(imageLoading)&& <p>Loading...</p>}
       </div>
-  </form>
+
+    </form>
+  </div>
   </>
   )
 }
