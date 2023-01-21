@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import './whotofollow.css'
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -15,16 +16,28 @@ function UsersList() {
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
-        <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      </li>
+      // <li key={user.id}>
+      <div className='userCard'>
+        <NavLink to={`/users/${user.id}`} style={{textDecoration:'none'}}>
+          <div className='profile-photo-div'><img className="profile-photo" src={user.profile_photo} ></img></div>
+          <div className='song-title'>{user.username}</div>
+        </NavLink>
+      </div>
+
+      // </li>
     );
   });
 
   return (
     <>
-      <h1>User List: </h1>
-      <ul>{userComponents}</ul>
+      <div className='div-container'>
+        <div className='title-div'>
+          <h1>Upcoming Artist: </h1>
+          <p className='small-text'>Suggested profiles based on your follows and tracks you've liked or played.</p>
+
+        </div >
+        <div className='allCards'>{userComponents}</div>
+      </div>
     </>
   );
 }

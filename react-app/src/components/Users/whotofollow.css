@@ -1,0 +1,62 @@
+.div-container{
+    padding-top: 45px;
+    margin: 0 183px 0 120px;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.title-div{
+
+    margin-bottom: 13px;
+}
+
+
+.small-text{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: gray;
+    border-bottom: 1px solid gray;
+}
+
+
+
+.allCards{
+object-fit: cover;
+display: grid;
+justify-content: space-evenly;
+grid-template-columns: repeat(auto-fill, minmax(241px, 265px));
+/* column-gap: 14px; */
+row-gap: 25px;
+grid-auto-flow: row dense;
+list-style: none;
+padding-left: 45px;
+
+}
+
+.userCard{
+object-fit: cover;
+height: 195px;
+width:195px;
+
+}
+
+.song-title{
+    padding-top: 9px;
+    display: flex;
+    justify-content: center;
+    color: #333;
+
+}
+
+.profile-photo-div{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-photo{
+    object-fit: cover;
+    border-radius: 160px;
+    height: 160px;
+    width: 160px;
+    transform: scale(1,1);
+
+}
