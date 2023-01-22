@@ -65,7 +65,7 @@ export default function Waveform({ urlGetter }) {
     </div>
       <div className="controls controls-position">
         <button className="play-pause-button" onClick={handlePlayPause}>{!playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
-        <input
+        {/* <input
           type="range"
           id="volume"
           name="volume"
@@ -75,7 +75,7 @@ export default function Waveform({ urlGetter }) {
           onChange={onVolumeChange}
           defaultValue={volume}
         />
-        <label htmlFor="volume">Volume</label>
+        <label htmlFor="volume">Volume</label> */}
       </div>
     </>
   );

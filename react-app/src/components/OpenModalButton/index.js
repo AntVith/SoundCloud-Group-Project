@@ -21,7 +21,7 @@ function OpenModalButton({
 
   return (
 
-  <button className={buttonText} onClick={onClick}>{buttonText}</button>
+  <button className={`${buttonText} delete-and-edit`} onClick={onClick}>{buttonText}</button>
 
   );
 }

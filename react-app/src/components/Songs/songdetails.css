@@ -5,20 +5,18 @@
 
 }
 
-
-
 #song-container{
   display: flex;
   background-color: lightgray;
-  height: 400px;
+  height: 350px;
   justify-content: space-between;
   align-items: flex-end;
   max-width: 100%;
 }
 
 .song-detail-img{
-  max-width: 40%;
-  height: 370px;
+  max-width:40%;
+  height: 320px;
   margin: 14px;
 
 }
@@ -53,5 +51,166 @@
 }
 
 .fa-pause{
+  color: white;
+}
+
+.bottom-comment-likes{
+  margin-top: 30px;
+}
+
+.comment-input input {
+  padding: 20px;
+  width: 80%;
+  height: 20px;
+  box-shadow: inset 0 0 0 10px #ccc;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.post-comment-button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 1px #f50 solid;
+  padding: 12px;
+  background-color: #f50;
+  border-radius: 4%;
+  margin-left: 20px;
+  color: white;
+}
+
+#likes-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* justify-items: center; */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  /* border-bottom: #333 2px solid; */
+}
+
+
+
+.liked{
+  background-color: transparent;
+  border: 1px #ccc solid;
+  color: #f50;
+  height: 25px;
+  width: 80px;
+  /* padding: 12px; */
+  cursor: pointer;
+}
+
+.liked:hover {
+  background-color: #f50;
+  color: white;
+  /* color: white; */
+}
+
+
+.fa-heart{
+  margin-right: 7px;
+}
+
+
+.likes-counter-songdetails{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-right: 180px;
+  color: rgb(160, 158, 158);
+  /* margin-bottom: 20px; */
+  /* border: 1px solid rebeccapurple; */
+}
+
+
+.like-count-heart{
+  color: rgb(160, 158, 158);
+}
+
+
+.comment-display-container{
+  display: flex;
+  border-top: #ccc 1px solid;
+  width: 90%;
+  margin-top: 15px;
+  padding-top: 20px;
+}
+
+.song-artist-info{
+  text-decoration: none;
+  /* border: 1px solid black; */
+}
+
+.link-to-artist-page{
+  text-decoration: none;
+}
+
+.all-comments-posted{
+  margin-top: 44px;
+  margin-left: 90px;
+  width: 90%;
+}
+
+.song-details-artistInfo{
+  color: #333;
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  font-weight: 100;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+
+.song-title-details{
+  margin-top: 12px;
+}
+
+.song-title-username{
+  font-size: 14px;
+}
+
+.song-title-genre{
+  font-size: 14px;
+}
+
+.comments-title-song-details{
+  color: gray;
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  /* font-size: 20px; */
+  font-weight: 100;
+  border-bottom: #ccc 1px solid;
+  padding-bottom: 10px;
+}
+
+.fa-message{
+  margin-right: 5px;
+}
+
+.posted-comment{
+  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  /* font-size: 20px; */
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.list-of-comments-song-details{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-and-edit{
+  background-color: transparent;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  width: 60px;
+  border-radius: 8%;
+  /* padding: 3px; */
+  cursor: pointer;
+  color: #f50;
+}
+
+.delete-and-edit:hover{
+  background-color: #f50;
   color: white;
 }

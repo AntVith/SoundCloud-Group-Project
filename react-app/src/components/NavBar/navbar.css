@@ -158,3 +158,15 @@ button.Upload{
   font-weight: 100;
   color: #ccc;
 }
+
+.nav-curr-user-link{
+  text-decoration: none;
+  color: #ccc;
+  margin-right: 15px;
+}
+
+.fa-circle-user{
+  color: #f50;
+  margin-right: 10px;
+  margin-left: 20px;
+}
