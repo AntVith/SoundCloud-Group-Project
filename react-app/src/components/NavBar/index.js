@@ -53,6 +53,9 @@ function NavBar({loaded}) {
             modalComponent={<UploadNewSong />}
             />
             </div>
+            <div className='navbar-user-pagelink'>
+              <NavLink className={'nav-curr-user-link'} to={`/users/${sessionUser.id}`} exact={true}><i class="fa-solid fa-circle-user fa-xl"></i>{sessionUser.username}</NavLink>
+            </div>
             <div className='log-out'>
             <LogoutButton />
             </div>

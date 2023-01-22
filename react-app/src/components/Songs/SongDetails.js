@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player'
 import OpenModalButton from '../OpenModalButton';
 import EditCommentModal from './EditCommentModal'
 import Waveform from '../Wavesurfer';
+import './songdetails.css'
 
 
 
@@ -100,7 +101,8 @@ const SongDetails = () => {
 
 
 
-
+let num = likes.totalLikes
+let newNum;
 
 const handleLike = async () => {
   if(!userObj){
@@ -110,92 +112,116 @@ const handleLike = async () => {
     'songs': Number(id),
     'users': userObj.id
   }
-
    dispatch(postALike(payload,id))
+
   // console.log("llllll",response)
   // setLikeCount(response.likes)
 }
 
 
+
   const song = songData[0]
 
-  return (
-    <section>
-      <div id= 'song-container'>
-        <div><img src={song.cover_photo} /></div>
-        <div>{song.genre}</div>
-        <div>{song.song_title}</div>
-
-        <NavLink
-        to={`/users/${song.user_id}`}
-        >{userNameFinder(song.user_id)}</NavLink>
-        <ReactPlayer
-          url={song.song_file}
-          autoplay
-          controls
-      />
-      </div>
-      <div id="waveform"></div>
-      <div className='parent-component'><Waveform urlGetter={song.song_file}/></div>
 
 
+return (
+<section>
+<div className='song-detail-page-container'>
+  <div id= 'song-container'>
+    <Waveform className='wave-form-player' urlGetter={song.song_file}/>
+      <img className='song-detail-img' src={song.cover_photo} />
+    {/* </div> */}
 
+      {/* <div>{song.genre}</div> */}
+        {/* <div>{song.song_title}</div>
+         <NavLink
+          to={`/users/${song.user_id}`}>{userNameFinder(song.user_id)}
+        </NavLink> */}
+  </div>
+
+<div className='bottom-comment-likes'>
+  <div id = 'comment-container'>
       <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+        {errors.map((error, idx) => (
+        <li key={idx}>{error}</li>
+        ))}
+      </ul>
+      {userObj &&
+        <div className='comment-input'>
+          <input
+          type='text' required
+          onChange={(e) => setNewComment(e.target.value)}
+          value={newComment}
+          placeholder='Write a Comment'>
+          </input>
+        {/* <button
+          className='post-comment-button'
+          onClick={handleSubmit}
+          disabled={!newComment}
+          >Post Comment
+        </button> */}
+          <button
+          className='post-comment-button'
+          onClick={handleSubmit}
+          style={!newComment ? {display: 'none'} : {}}
+          >Post Comment</button>
+        </div>
+      }
+      {message.length > 0 &&
+        <div>{message}</div>
+      }
+<div>
+</div>
+</div>
+<div id = 'likes-container'>
+  {/* <div>likes: {likes.totalLikes}</div> */}
+    <button className={'liked'}
+    onClick={handleLike}><i class="fa-solid fa-heart"></i>Like</button>
+    <div className='likes-counter-songdetails'><i class="fa-solid fa-heart like-count-heart"></i>{likes.totalLikes}</div>
+</div>
 
-          {userObj &&
-          <div>
-            <input
-            type='text' required
-            onChange={(e) => setNewComment(e.target.value)}
-            value={newComment}
-            placeholder='Write a Comment'></input>
-            <button
-            onClick={handleSubmit}
-            disabled={!newComment}
-            >Post Comment</button>
-            </div>
-          }
+<div className='comment-display-container'>
+  <div className='song-artist-info'>
+         <NavLink
+         className={'link-to-artist-page'}
+          to={`/users/${song.user_id}`}><i class="fa-solid fa-circle fa-7x"></i>
+          <div className='song-details-artistInfo song-title-details'>{song.song_title}</div>
+          <div className='song-details-artistInfo song-title-username'>{userNameFinder(song.user_id)} </div>
+          <div className='song-details-artistInfo song-title-genre'>{song.genre}</div>
+        </NavLink>
+  </div>
+  {/* <h2>Comments</h2> */}
+  <div className='all-comments-posted'>
+    <div>
 
-          {message.length > 0 &&
-            <div>{message}</div>
-          }
-
-      <div id = 'comment-container'>
-      {
-          comments.map(comment => (
-
-              <div>
-                <div>comment: {comment.comment}</div>
-                {userObj?.id === comment.user_id &&
-                  <button
-                onClick={() => handleDeletion(comment.id)}
-                >Delete
-                </button> }
-                {userObj?.id === comment.user_id &&
+    <h2 className='comments-title-song-details'><i class="fa-solid fa-message fa-2xs"></i>Comments</h2>
+    </div>
+  {
+  comments.map(comment => (
+      <div className='list-of-comments-song-details'>
+        <div className='posted-comment'>{comment.comment}</div>
+        <div className='comment-edit-and-delete'>
+          {userObj?.id === comment.user_id &&
+          <button
+            className='delete-and-edit'
+            onClick={() => handleDeletion(comment.id)}>Delete</button>}
+              {userObj?.id === comment.user_id &&
                 <OpenModalButton
                  modalComponent={<EditCommentModal currentCommentId={ `${comment.id}` } />}
                  buttonText={'Edit'}
-                />}
-               </div>
-
-
-          ))
-
-        }
-
-
+              />}
+          </div>
       </div>
-      <div id = 'likes-container'>
-      <div>likes: {likes.totalLikes}</div>
-      <button onClick={handleLike}>Like</button>
-      </div>
+    ))
+  }
+  </div>
+</div>
+</div>
 
-    </section>
-  );
+</div>
+</section>
+
+);
 }
 
 export default SongDetails;

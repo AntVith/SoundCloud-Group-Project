@@ -54,13 +54,15 @@ function userNameFinder(id) {
   return usernameFound
 }
 
+
+
 return (
   <section className='hompage-container'>
     <div className='main-container'>
       <div>
         <div className='genre-container'>
           <div>
-            <h2>Soul</h2>
+            <h2 className='genre-word'>Soul</h2>
           </div>
           <div className='song-gallary-container'>
             <div className='song-gallary'>
@@ -73,9 +75,9 @@ return (
                           to={`/songs/${song.id}`}
                           key={song.id}
                           style={{ textDecoration: 'none' }}>
-                          <div className='will-change-to-img'></div>
-                          <div>{song.song_title}</div>
-                          <div>{userNameFinder(song.user_id)}</div>
+                          <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                          <div className='home-song-title'>{song.song_title}</div>
+                          <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                         </NavLink>
                       </div>
                     </div>
@@ -89,7 +91,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Rock</h2>
+          <h2 className='genre-word'>Rock</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -102,9 +104,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -118,7 +120,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>R&B</h2>
+          <h2 className='genre-word'>R&B</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -131,9 +133,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -147,7 +149,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Rap</h2>
+          <h2 className='genre-word'>Rap</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -160,9 +162,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -176,7 +178,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Pop</h2>
+          <h2 className='genre-word'>Pop</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -189,9 +191,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -205,7 +207,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Jazz</h2>
+          <h2 className='genre-word'>Jazz</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -218,9 +220,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -234,7 +236,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Instrumental</h2>
+          <h2 className='genre-word'>Instrumental</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -247,9 +249,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -263,7 +265,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Hip-Hop</h2>
+          <h2 className='genre-word'>Hip-Hop</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -276,9 +278,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                       <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -292,7 +294,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Gospel</h2>
+          <h2 className='genre-word'>Gospel</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -305,9 +307,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -321,7 +323,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>EDM</h2>
+          <h2 className='genre-word'>EDM</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -334,9 +336,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -350,7 +352,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Drill</h2>
+          <h2 className='genre-word'>Drill</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -363,9 +365,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -379,7 +381,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Disco</h2>
+          <h2 className='genre-word'>Disco</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -392,9 +394,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -408,7 +410,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Country</h2>
+          <h2 className='genre-word'>Country</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -421,9 +423,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                        <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>
@@ -437,7 +439,7 @@ return (
     <div>
       <div className='genre-container'>
         <div>
-          <h2>Classical</h2>
+          <h2 className='genre-word'>Classical</h2>
         </div>
         <div className='song-gallary-container'>
           <div className='song-gallary'>
@@ -450,9 +452,9 @@ return (
                         to={`/songs/${song.id}`}
                         key={song.id}
                         style={{ textDecoration: 'none' }}>
-                        <div className='will-change-to-img'></div>
-                        <div>{song.song_title}</div>
-                        <div>{userNameFinder(song.user_id)}</div>
+                       <img className='will-change-to-img' src={song.cover_photo} alt='cover-photo'/>
+                        <div className='home-song-title'>{song.song_title}</div>
+                        <div className='home-user-name'>{userNameFinder(song.user_id)}</div>
                       </NavLink>
                     </div>
                   </div>

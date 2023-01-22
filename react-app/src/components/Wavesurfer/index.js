@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
+import './waveform.css'
 
 const formWaveSurferOptions = ref => ({
   container: ref,
@@ -58,11 +59,13 @@ export default function Waveform({ urlGetter }) {
   };
 
   return (
-    <div>
+    <>
+    <div className='waveform-container'>
       <div id="waveform" ref={waveformRef} />
-      <div className="controls">
-        <button onClick={handlePlayPause}>{!playing ? "Play" : "Pause"}</button>
-        <input
+    </div>
+      <div className="controls controls-position">
+        <button className="play-pause-button" onClick={handlePlayPause}>{!playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
+        {/* <input
           type="range"
           id="volume"
           name="volume"
@@ -72,8 +75,8 @@ export default function Waveform({ urlGetter }) {
           onChange={onVolumeChange}
           defaultValue={volume}
         />
-        <label htmlFor="volume">Volume</label>
+        <label htmlFor="volume">Volume</label> */}
       </div>
-    </div>
+    </>
   );
 }
