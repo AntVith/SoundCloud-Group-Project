@@ -12,12 +12,14 @@ function EditCommentModal(currentCommentId) {
     const [newComment, setNewComment] = useState('')
     const currentUser = useSelector(state => state.session?.user.id)
     const currentSong = useSelector(state => state.songs?.singleSong.song.id)
+    const currComment = useSelector(state => state.comments.comments)
     const [errors, setErrors] = useState([])
     const {closeModal} = useModal()
 
 
 
 const commentId = currentCommentId.currentCommentId
+
 
 const handleSubmit = async (e) => {
     e.preventDefault()
@@ -59,7 +61,7 @@ const handleSubmit = async (e) => {
                 required
                 onChange={(e) => setNewComment(e.target.value)}
                 value={newComment}
-                placeholder='Edit Comment'
+                placeholder={currComment[commentId].comment}
                 name="comment"
                 id= 'edit-comment-form-comment'
 
