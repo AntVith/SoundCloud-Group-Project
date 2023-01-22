@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {useModal} from '../../context/Modal'
 import { useHistory } from "react-router-dom";
 import { updateASong } from "../../store/songs";
+import './EditSongModal.css'
 
 
 function EditSongModal(currentSongId) {
@@ -52,9 +53,10 @@ function EditSongModal(currentSongId) {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h1>Update Your Song</h1>
+    <form id= 'edit-song-form' onSubmit={handleSubmit}>
+      <div id='edit-header-div'>
+        <h1 className='edit-header-upload'>Update Your Track Here</h1>
+        </div>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -64,6 +66,7 @@ function EditSongModal(currentSongId) {
           onChange={(e) => setGenre(e.target.value)}
           value={genre}
           name='genre'
+          id='edit-form-genre'
           >
             <option value="Classical">Classical</option>
             <option value="Country">Country</option>
@@ -80,7 +83,7 @@ function EditSongModal(currentSongId) {
             <option value="Rock">Rock</option>
             <option value="Soul">Soul</option>
         </select>
-        <div>
+
           <input
             type='text'
             required
@@ -88,13 +91,12 @@ function EditSongModal(currentSongId) {
             value={song_title}
             placeholder='Song Title'
             name='song_title'
+            id= 'edit-form-song_title'
           />
-        </div>
 
-        <div>
-          <button className="editSong-button" type='submit'>Submit</button>
-        </div>
-      </div>
+
+          <button className="editSong-button" type='submit'>Update</button>
+
     </form>
   )
 }
