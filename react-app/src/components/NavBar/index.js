@@ -35,7 +35,7 @@ function NavBar({loaded}) {
             <input
             type='text'
             disabled
-            placeholder='Feature coming soon'
+            placeholder='Search coming soon'
             className='search-input'>
             </input>
             <div className='search-icon'>

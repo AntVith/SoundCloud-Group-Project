@@ -30,8 +30,6 @@ const SongDetails = () => {
   const [errors, setErrors] = useState([])
 
 
-
-
   // const [likeCount, setLikeCount] = useState(allLikes)
 
   useEffect(() => {
@@ -59,6 +57,12 @@ const SongDetails = () => {
     const usersFound = users.filter(user => user.id === id)
     const usernameFound = usersFound[0].username
     return usernameFound
+  }
+
+  function userPhotoFinder(id){
+    const userFound = users.filter(user => user.id === id)
+    const userPhotoFound = userFound[0].profile_photo
+    return userPhotoFound
   }
 
 
@@ -118,7 +122,7 @@ const handleLike = async () => {
   // setLikeCount(response.likes)
 }
 
-
+console.log("USERRRR", users)
 
   const song = songData[0]
 
@@ -184,7 +188,8 @@ return (
   <div className='song-artist-info'>
          <NavLink
          className={'link-to-artist-page'}
-          to={`/users/${song.user_id}`}><i class="fa-solid fa-circle fa-7x"></i>
+          to={`/users/${song.user_id}`}>
+          <img className='artist-photo-songdetail' src={userPhotoFinder(song.user_id)} />
           <div className='song-details-artistInfo song-title-details'>{song.song_title}</div>
           <div className='song-details-artistInfo song-title-username'>{userNameFinder(song.user_id)} </div>
           <div className='song-details-artistInfo song-title-genre'>{song.genre}</div>

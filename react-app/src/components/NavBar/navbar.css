@@ -27,7 +27,7 @@
 
 
 
-  /* z-index: 1000; */
+  z-index: 10;
 }
 
 .homeLink{
@@ -132,24 +132,15 @@ button.Upload{
 
 
 
-/* .search-input{
-
-  display: flex;
-  align-items: center;
-  border: 1px solid;
-  max-width: fit-content;
-  padding: 10px;
-  height: 12px;
-  width: 300px;
-  border-radius: 5px;
-  outline: none;
-} */
-
 .search-input{
   border: none;
   outline: none;
   text-align: center;
   max-width: fit-content;
+  background-color: white;
+  margin-top: 15px;
+  height: 5px;
+  /* width: 500px; */
 }
 
 .search-icon{
