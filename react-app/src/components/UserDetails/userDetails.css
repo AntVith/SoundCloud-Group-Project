@@ -114,7 +114,8 @@ background-color: lightgrey;
 } */
 #song-detail-with-cover{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-content: center;
 }
 #each-song-cover-photo{
     height:230px;
@@ -130,15 +131,18 @@ background-color: lightgrey;
 }
 #each-song-title-and-buttons{
     display: flex;
-    flex-direction: row;
-    /* justify-content: space-between; */
+    flex-direction: column;
+    align-self: center;
+    /* justify-content: center; */
 }
 #each-song-title{
     margin-bottom: 8%;
     margin-left: 3.3%;
     font-size: 20px;
     text-decoration: none;
-    color: black
+    color: black;
+    display: flex;
+    justify-content: center;
 }
 #wave-image{
     margin-left: 1.5%;
@@ -183,12 +187,21 @@ background-color: lightgrey;
     padding-right: 5px;
     border: 1px solid grey;
     color: grey;
+    display: flex;
+    justify-content: center;
 }
 
-.waveform-containern2{
+.buttons-together{
+    display: flex;
+    width: 230px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .waveform-container2{
     flex-grow: 1;
   }
 
-.waveform-container{
+.wave{
     border-color: #f50 solid 1px;
-}
+} */

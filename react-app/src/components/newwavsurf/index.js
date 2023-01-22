@@ -48,15 +48,6 @@ export default function Waveformtwo({ urlGetter }) {
     wavesurfer.current.playPause();
   };
 
-  const onVolumeChange = e => {
-    const { target } = e;
-    const newVolume = +target.value;
-
-    if (newVolume) {
-      setVolume(newVolume);
-      wavesurfer.current.setVolume(newVolume || 1);
-    }
-  };
 
   return (
     <>
@@ -65,17 +56,7 @@ export default function Waveformtwo({ urlGetter }) {
     </div>
       <div >
         <button className="play-pause-user" onClick={handlePlayPause}>{!playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
-        {/* <input
-          type="range"
-          id="volume"
-          name="volume"
-          min="0.01"
-          max="1"
-          step=".025"
-          onChange={onVolumeChange}
-          defaultValue={volume}
-        />
-        <label htmlFor="volume">Volume</label> */}
+
       </div>
     </>
   );

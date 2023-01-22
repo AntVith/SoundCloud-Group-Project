@@ -33,6 +33,7 @@ export default function Waveform({ urlGetter }) {
     wavesurfer.current.on("ready", function() {
 
       if (wavesurfer.current) {
+        wavesurfer.current.playPause()
         wavesurfer.current.getDuration()
         wavesurfer.current.setVolume(volume);
         setVolume(volume);
@@ -48,15 +49,7 @@ export default function Waveform({ urlGetter }) {
     wavesurfer.current.playPause();
   };
 
-  const onVolumeChange = e => {
-    const { target } = e;
-    const newVolume = +target.value;
 
-    if (newVolume) {
-      setVolume(newVolume);
-      wavesurfer.current.setVolume(newVolume || 1);
-    }
-  };
 
   return (
     <>
@@ -64,7 +57,7 @@ export default function Waveform({ urlGetter }) {
       <div id="waveform" ref={waveformRef} />
     </div>
       <div className="controls controls-position">
-        <button className="play-pause-button" onClick={handlePlayPause}>{!playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
+        <button className="play-pause-button" onClick={handlePlayPause}>{playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
         {/* <input
           type="range"
           id="volume"
