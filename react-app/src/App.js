@@ -10,6 +10,7 @@ import User from './components/UserDetails';
 import HomePage from "./components/Homepage";
 import SongDetails from './components/Songs/SongDetails'
 import { authenticate } from './store/session';
+import Footer from './components/Footer/footer';
 
 
 
@@ -52,6 +53,7 @@ function App() {
         <HomePage />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 }
