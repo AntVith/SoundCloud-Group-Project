@@ -63,6 +63,8 @@ function User() {
     if (response){
       message = response.message
     }
+    history.push(`/users/${userId}`)
+
   }
 
   return (
