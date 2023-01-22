@@ -1,0 +1,44 @@
+.title {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+    color: #333;
+    font-size: 1.5vw;
+}
+
+.form-container {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+}
+
+input {
+
+    display: block;
+    margin-bottom: 15px;
+}
+
+input[type=text] {
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    padding: 10px;
+    border-radius: 10px;
+    width: 23vw;
+}
+
+.newHome-button {
+    margin-top: 5px;
+    cursor: pointer;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+    background-color: #f50;
+    color: white;
+    width: 24.5vw;
+    height: 2vw;
+    border-radius: 10px;
+}
