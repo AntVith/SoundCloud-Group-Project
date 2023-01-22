@@ -1,7 +1,19 @@
+/* .hompage-container{
+  background-color: white;
+} */
+
+/* .test-backg{
+  background-color: white;
+} */
+
+
+
 .main-container{
   margin: 50px 120px 0 120px;
   /* overflow: scroll; */
+  background-color: white;
 }
+
 
 .genre-container{
   /* border: 1px solid #333; */
@@ -42,6 +54,7 @@
   height: 180px;
   margin-top: 25px;
   margin-right: 20px;
+  object-fit: cover;
 }
 
 .genre-word{

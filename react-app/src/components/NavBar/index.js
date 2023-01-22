@@ -79,6 +79,17 @@ function NavBar({loaded}) {
         </div>
       </div>
     </NavLink>
+    <div className='header-center-logged-out'>
+      <input
+        type='text'
+        disabled
+        placeholder='Feature coming soon'
+        className='search-input'>
+      </input>
+      <div className='search-icon'>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
     <div className='header-right'>
       <div className='login-nav'>
         <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>

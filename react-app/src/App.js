@@ -10,6 +10,8 @@ import User from './components/UserDetails';
 import HomePage from "./components/Homepage";
 import SongDetails from './components/Songs/SongDetails'
 import { authenticate } from './store/session';
+import Footer from './components/Footer/footer';
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
 
   return (
     <>
+    <div className='page-container'>
       <NavBar loaded={loaded} />
       <Switch>
         <Route path='/login' exact={true}>
@@ -50,7 +53,9 @@ function App() {
         <Route path='/' exact={true} >
         <HomePage />
         </Route>
-      </Switch>
+    </Switch>
+  <Footer />
+  </div>
     </>
   );
 }
