@@ -1,6 +1,14 @@
+.page-container{
+  padding-bottom: 60px;
+}
+
+
 .main-footer{
   color: #f50;
-  background-color: #333;
+  background-color: rgb(241, 241, 241);
+  border-top: 1px rgb(0, 0, 0, 0.3) solid;
+  padding: 7px;
+  font: 15px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -13,4 +21,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.footer-col1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-ul{
+  list-style: none;
+}
+
+.fa-linkedin{
+  color: #f50;
 }

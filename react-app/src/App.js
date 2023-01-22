@@ -32,6 +32,7 @@ function App() {
 
   return (
     <>
+    <div className='page-container'>
       <NavBar loaded={loaded} />
       <Switch>
         <Route path='/login' exact={true}>
@@ -52,8 +53,9 @@ function App() {
         <Route path='/' exact={true} >
         <HomePage />
         </Route>
-      </Switch>
-      <Footer />
+    </Switch>
+  <Footer />
+  </div>
     </>
   );
 }

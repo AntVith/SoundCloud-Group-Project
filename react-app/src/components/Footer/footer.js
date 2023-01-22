@@ -9,40 +9,30 @@ const Footer = () => {
       <div className='footer-container'>
         <div className='footer-row'>
             <div className='footer-col1'>
-                <h4>First Name</h4>
+                <p>Alim Lastname</p>
                 <ul className='footer-ul'>
-                  <li>GitHub</li>
-                  <li>LinkedIn</li>
+                  <a href='https://www.linkedin.com/in/alim-hussain-a86b72249/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
             </div>
-            <div>|</div>
-            <div className='footer-col2'>
-              <h4>First Name</h4>
+            <div className='footer-col1'>
+              <p>Anthony Vithayathil</p>
                 <ul className='footer-ul'>
-                  <li>GitHub</li>
-                  <li>LinkedIn</li>
+                <a href='https://www.linkedin.com/in/anthony-vithayathil-2256bb136/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
             </div>
-            <div>|</div>
-            <div className='footer-col3'>
-              <h4>First Name</h4>
+            <div className='footer-col1'>
+              <p>Kaleb Robi</p>
                 <ul className='footer-ul'>
-                  <li>GitHub</li>
-                  <li>LinkedIn</li>
+                <a href='https://www.linkedin.com/in/kaleb-robi-a5abb0124/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
             </div>
-            <div>|</div>
-            <div className='footer-col4'>
-              <h4>First Name</h4>
+            <div className='footer-col1'>
+              <p>Tyler Malinoski</p>
                 <ul className='footer-ul'>
-                  <li>GitHub</li>
-                  <li>LinkedIn</li>
+                <a href='https://www.linkedin.com/in/tyler-malinoski/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
             </div>
-
-
         </div>
-
       </div>
     </div>
   )
