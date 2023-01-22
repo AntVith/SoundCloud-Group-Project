@@ -53,6 +53,7 @@
   height: 180px;
   margin-top: 25px;
   margin-right: 20px;
+  object-fit: cover;
 }
 
 .genre-word{
