@@ -110,9 +110,28 @@ button.Upload{
   background-color: white;
   width: 300px;
   border-radius: 5px;
-  margin-left: 70px;
+  margin-left: 50px;
 
 }
+
+.header-center-logged-out{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border: 1px solid;
+  text-align: center;
+  height: 25px;
+  background-color: white;
+  width: 300px;
+  border-radius: 5px;
+  margin-left: 175px;
+
+}
+
+
+
+
 /* .search-input{
 
   display: flex;

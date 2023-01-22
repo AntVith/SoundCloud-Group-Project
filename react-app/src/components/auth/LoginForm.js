@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -10,6 +11,18 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = ['https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg', 'https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_b-447230ef.jpg']
+
+
+  useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentIndex((currentIndex + 1) % images.length);
+      }, 8000);
+      return () => clearInterval(interval);
+  }, [currentIndex]);
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -38,11 +51,19 @@ const LoginForm = () => {
 
   return (
     <form  id='login-form-whole-div' onSubmit={onLogin}>
-
-      <img id='splash-image-login' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ5O6aTHpvERBGPBblrlKP3D9WIeJ5zOictA&usqp=CAU'
-      />
+      <div id='imgSlider'>
+        <TransitionGroup>
+          <CSSTransition
+          key={images[currentIndex]}
+          timeout={5000}
+          classNames='slide'
+          >
+          <img id='splash-image-login'  src={images[currentIndex]}/>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
       <div id='login-form-details-part'>
-      <h1 id='site-name-label'>SoundCrook</h1>
+      <h1 id='site-name-label'>SoundSurf</h1>
       <h2 id='login-title-label'>Login</h2>
       <div id='error-message-login'>
         {errors.map((error, ind) => (
