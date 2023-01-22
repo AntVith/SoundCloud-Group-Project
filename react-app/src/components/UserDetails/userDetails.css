@@ -106,6 +106,8 @@ background-color: lightgrey;
     width:100%;
     max-width: 100%;
     margin-top: 5%;
+    object-fit: cover;
+
 }
 /* #song-card-exact{
     width:100%;
@@ -123,12 +125,13 @@ background-color: lightgrey;
 #song-detail-no-cover{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-self: flex-end;
 }
 #each-song-title-and-buttons{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 #each-song-title{
     margin-bottom: 8%;
@@ -180,4 +183,12 @@ background-color: lightgrey;
     padding-right: 5px;
     border: 1px solid grey;
     color: grey;
+}
+
+.waveform-containern2{
+    flex-grow: 1;
+  }
+
+.waveform-container{
+    border-color: #f50 solid 1px;
 }

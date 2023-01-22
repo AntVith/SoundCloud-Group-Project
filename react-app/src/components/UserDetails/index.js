@@ -9,6 +9,8 @@ import { getAUser } from '../../store/session';
 import { deleteASong } from '../../store/songs';
 import { NavLink } from 'react-router-dom';
 import './userDetails.css'
+import Waveformtwo from '../newwavsurf';
+// import Waveform from '../Wavesurfer';
 
 
 
@@ -136,10 +138,13 @@ function User() {
                               }
                               </div>
                           </div>
-                        <img id='wave-image' src='https://i.stack.imgur.com/MXAzC.png' />
+                          <div>
+                          </div>
+                        {/* <img id='wave-image' src='https://i.stack.imgur.com/MXAzC.png' /> */}
                     </div>
               </div>
             </NavLink>
+                          <Waveformtwo  className='test' urlGetter={eachSong.song_file}/>
 
 
 

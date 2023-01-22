@@ -1,0 +1,28 @@
+.waveform-container{
+  border-color: #f50 solid 1px;
+
+  }
+
+
+
+  .waveform{
+    width: 100%;
+    height: 90px;
+
+  }
+
+
+   .play-pause-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: #f50;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #f50;
+    padding-bottom: 3px;
+  }
