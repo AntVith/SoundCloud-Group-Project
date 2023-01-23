@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {useModal} from '../../context/Modal';
 import { updateAComment } from "../../store/comments"
+import './editcommentmodal.css'
 
 
 function EditCommentModal(currentCommentId) {
@@ -11,12 +12,14 @@ function EditCommentModal(currentCommentId) {
     const [newComment, setNewComment] = useState('')
     const currentUser = useSelector(state => state.session?.user.id)
     const currentSong = useSelector(state => state.songs?.singleSong.song.id)
+    const currComment = useSelector(state => state.comments.comments)
     const [errors, setErrors] = useState([])
     const {closeModal} = useModal()
 
 
 
 const commentId = currentCommentId.currentCommentId
+
 
 const handleSubmit = async (e) => {
     e.preventDefault()
@@ -43,29 +46,31 @@ const handleSubmit = async (e) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <h1>Update Your Comment</h1>
+        <form id= 'edit-comment-form' onSubmit={handleSubmit}>
+          <div id='edit-comment-header-div'>
+            <h1 className='edit-comment-header'>Update Your Comment</h1>
+            </div>
             <ul>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
-            <div>
+
               <input
                 type='text'
                 required
                 onChange={(e) => setNewComment(e.target.value)}
                 value={newComment}
-                placeholder='Edit Comment'
+                placeholder={currComment[commentId].comment}
                 name="comment"
+                id= 'edit-comment-form-comment'
 
               />
-              </div>
-              <div>
-          <button className="newcomment-button" type='submit'>Submit</button>
-        </div>
-            </div>
+
+
+          <button className="editcomment-button" type='submit'>Submit</button>
+
+
         </form>
     )
 }

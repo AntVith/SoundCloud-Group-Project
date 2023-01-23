@@ -27,7 +27,7 @@
 
 
 
-  z-index: 1000;
+  z-index: 10;
 }
 
 .homeLink{
@@ -110,27 +110,37 @@ button.Upload{
   background-color: white;
   width: 300px;
   border-radius: 5px;
-  margin-left: 70px;
+  margin-left: 50px;
 
 }
-/* .search-input{
 
+.header-center-logged-out{
   display: flex;
+  justify-content: space-between;
+  align-content: center;
   align-items: center;
   border: 1px solid;
-  max-width: fit-content;
-  padding: 10px;
-  height: 12px;
+  text-align: center;
+  height: 25px;
+  background-color: white;
   width: 300px;
   border-radius: 5px;
-  outline: none;
-} */
+  margin-left: 175px;
+
+}
+
+
+
 
 .search-input{
   border: none;
   outline: none;
   text-align: center;
   max-width: fit-content;
+  background-color: white;
+  margin-top: 15px;
+  height: 5px;
+  /* width: 500px; */
 }
 
 .search-icon{
@@ -157,4 +167,16 @@ button.Upload{
   font-family: Interstate,Lucida Grande,Arial,sans-serif;
   font-weight: 100;
   color: #ccc;
+}
+
+.nav-curr-user-link{
+  text-decoration: none;
+  color: #ccc;
+  margin-right: 15px;
+}
+
+.fa-circle-user{
+  color: #f50;
+  margin-right: 10px;
+  margin-left: 20px;
 }

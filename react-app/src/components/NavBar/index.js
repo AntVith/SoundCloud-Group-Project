@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton'
 import UploadNewSong from '../UploadSongModal';
+
 import './navbar.css'
 
 
@@ -18,7 +19,7 @@ function NavBar({loaded}) {
     <>
     <nav className='nav'>
       <div className='header'>
-      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
+      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
           <div className='homelink-container'>
             <div className='test'>
           {/* <NavLink to='/' exact={true} activeClassName='active'> */}
@@ -34,7 +35,7 @@ function NavBar({loaded}) {
             <input
             type='text'
             disabled
-            placeholder='Feature coming soon'
+            placeholder='Search coming soon'
             className='search-input'>
             </input>
             <div className='search-icon'>
@@ -51,6 +52,9 @@ function NavBar({loaded}) {
             buttonText='Upload'
             modalComponent={<UploadNewSong />}
             />
+            </div>
+            <div className='navbar-user-pagelink'>
+              <NavLink className={'nav-curr-user-link'} to={`/users/${sessionUser.id}`} exact={true}><i class="fa-solid fa-circle-user fa-xl"></i>{sessionUser.username}</NavLink>
             </div>
             <div className='log-out'>
             <LogoutButton />
@@ -75,6 +79,17 @@ function NavBar({loaded}) {
         </div>
       </div>
     </NavLink>
+    <div className='header-center-logged-out'>
+      <input
+        type='text'
+        disabled
+        placeholder='Feature coming soon'
+        className='search-input'>
+      </input>
+      <div className='search-icon'>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
     <div className='header-right'>
       <div className='login-nav'>
         <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>

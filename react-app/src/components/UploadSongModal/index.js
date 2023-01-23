@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createSong } from '../../store/songs'
 import { useSelector } from "react-redux";
+import './upload.css'
 
 
 
@@ -60,15 +61,19 @@ function UploadNewSong() {
   }
 
   return (
-  <form onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
-    <div>
-      <h1>Add a Song</h1>
+
+    <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
+    <div id='header-div'>
+    <h1 className='header-upload'>Upload your tracks  here</h1>
+    </div>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-      <div>
+
+        <div id='upload-form-cover-photo'>
+        <label id='upload-form-cover-photo-label' for="upload-cover-photo">Upload Cover Photo</label>
         <input
           type='file'
           accept="image/*"
@@ -76,13 +81,29 @@ function UploadNewSong() {
           onChange={(e) => setCover_photo(e.target.files[0])}
           placeholder='Cover Photo'
           name='coverphoto'
+          className='song-upload-button'
         />
-      </div>
-      <div>
-        <select
+        </div>
+
+        <div id='upload-form-song_file'>
+        <label id='upload-form-song_file-label' for="upload-songfile-photo">Upload Song File</label>
+        <input
+          type='file'
+          required
+          accept='audio/*'
+          onChange={(e) => setSong_file(e.target.files[0])}
+          placeholder='Song file'
+          name='songfile'
+          className='song-upload-button'
+        />
+        </div>
+
+          <select
           onChange={(e) => setGenre(e.target.value)}
           value={genre}
           name='genre'
+          id='upload-form-genre'
+          className='Select-Upload-Song-Input'
           >
             <option value="Classical">Classical</option>
             <option value="Country">Country</option>
@@ -100,20 +121,7 @@ function UploadNewSong() {
             <option value="Soul">Soul</option>
         </select>
 
-      </div>
 
-
-      <div>
-        <input
-          type='file'
-          required
-          accept='audio/*'
-          onChange={(e) => setSong_file(e.target.files[0])}
-          placeholder='Song file'
-          name='songfile'
-        />
-      </div>
-      <div>
         <input
           type='text'
           required
@@ -121,16 +129,17 @@ function UploadNewSong() {
           value={song_title}
           placeholder='Song Title'
           name='song_title'
+          id= 'upload-form-song_title'
+          className='Upload-Song-Input'
         />
-      </div>
-      <div>
-        <button type="submit"
+
+        <button className='song-submit-button' type="submit"
         disabled={isLoading}
-        >Submit</button>
+        >Upload</button>
         {(imageLoading)&& <p>Loading...</p>}
-      </div>
-    </div>
-  </form>
+    </form>
+
+
   )
 }
 export default UploadNewSong
