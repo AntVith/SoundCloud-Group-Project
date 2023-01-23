@@ -84,7 +84,7 @@ const SignUpForm = () => {
         </TransitionGroup>
       </div>
       <div id='sign-up-form-details-part'>
-      <h1 id='site-name-label'>SoundSurf</h1>
+      <h1 id='site-name-label'>SoundStream</h1>
       <h2 id='login-title-label'>Sign-Up</h2>
       <div id='error-message-login'>
         {errors.map((error, ind) => (
