@@ -136,9 +136,10 @@ function UploadNewSong() {
         <button className='song-submit-button' type="submit"
         disabled={isLoading}
         >Upload</button>
-        {(imageLoading)&& <p>Loading...</p>}
-
     </form>
+    <div className="loading-word">
+        {(imageLoading)&& <p>Loading...</p>}
+    </div>
 
 </div>
 

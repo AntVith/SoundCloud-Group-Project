@@ -145,9 +145,6 @@ function User() {
               </NavLink>
               <Waveformtwo className='test' urlGetter={eachSong.song_file} />
 
-
-
-
             </div>
 
           ))}
