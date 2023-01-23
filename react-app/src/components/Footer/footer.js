@@ -9,7 +9,7 @@ const Footer = () => {
       <div className='footer-container'>
         <div className='footer-row'>
             <div className='footer-col1'>
-                <p>Alim Lastname</p>
+                <p>Alim Hussain</p>
                 <ul className='footer-ul'>
                   <a href='https://www.linkedin.com/in/alim-hussain-a86b72249/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>

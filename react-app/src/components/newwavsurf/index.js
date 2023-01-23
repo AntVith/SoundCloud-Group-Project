@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
-import './waveform.css'
+import './special.css'
 
 const formWaveSurferOptions = ref => ({
   container: ref,
@@ -15,7 +15,7 @@ const formWaveSurferOptions = ref => ({
   partialRender: true
 });
 
-export default function Waveform({ urlGetter }) {
+export default function Waveformtwo({ urlGetter }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -33,7 +33,6 @@ export default function Waveform({ urlGetter }) {
     wavesurfer.current.on("ready", function() {
 
       if (wavesurfer.current) {
-        wavesurfer.current.playPause()
         wavesurfer.current.getDuration()
         wavesurfer.current.setVolume(volume);
         setVolume(volume);
@@ -50,25 +49,14 @@ export default function Waveform({ urlGetter }) {
   };
 
 
-
   return (
     <>
     <div className='waveform-container'>
       <div id="waveform" ref={waveformRef} />
     </div>
-      <div className="controls controls-position">
-        <button className="play-pause-button" onClick={handlePlayPause}>{playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
-        {/* <input
-          type="range"
-          id="volume"
-          name="volume"
-          min="0.01"
-          max="1"
-          step=".025"
-          onChange={onVolumeChange}
-          defaultValue={volume}
-        />
-        <label htmlFor="volume">Volume</label> */}
+      <div >
+        <button className="play-pause-user" onClick={handlePlayPause}>{!playing ? <i class="fa-sharp fa-solid fa-play fa-3x"></i> : <i class="fa-sharp fa-solid fa-pause fa-3x"></i>}</button>
+
       </div>
     </>
   );

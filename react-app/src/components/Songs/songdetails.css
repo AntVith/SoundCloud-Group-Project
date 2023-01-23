@@ -15,10 +15,11 @@
 }
 
 .song-detail-img{
-  max-width:40%;
-  height: 320px;
+  /* max-width:40%; */
+  height: 300px;
+  width: 300px;
   margin: 14px;
-
+  object-fit: cover;
 }
 
 .waveform-container{
