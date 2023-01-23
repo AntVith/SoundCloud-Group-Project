@@ -76,7 +76,7 @@ function UploadNewSong() {
         <label id='upload-form-cover-photo-label' for="upload-cover-photo">Upload Cover Photo</label>
         <input
           type='file'
-          accept="image/*"
+          accept="image/png, image/jpeg, image/jpg"
           required
           onChange={(e) => setCover_photo(e.target.files[0])}
           placeholder='Cover Photo'
@@ -90,7 +90,7 @@ function UploadNewSong() {
         <input
           type='file'
           required
-          accept='audio/*'
+          accept='audio/wav, audio/mp3, audio/mpeg'
           onChange={(e) => setSong_file(e.target.files[0])}
           placeholder='Song file'
           name='songfile'
