@@ -30,11 +30,15 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    const errors = []
     if (password === repeatPassword) {
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
       if (data) {
         setErrors(data)
       }
+
+    }else{
+      setErrors([...errors, 'Passwords do not match STOOPID'])
     }
   };
 
@@ -80,7 +84,7 @@ const SignUpForm = () => {
         </TransitionGroup>
       </div>
       <div id='sign-up-form-details-part'>
-      <h1 id='site-name-label'>SoundCrook</h1>
+      <h1 id='site-name-label'>SoundStream</h1>
       <h2 id='login-title-label'>Sign-Up</h2>
       <div id='error-message-login'>
         {errors.map((error, ind) => (
@@ -156,7 +160,9 @@ const SignUpForm = () => {
       <button  id='submit-button-singup' type='submit'>Sign Up</button>
       </div>
     </form>
+
   );
+
 };
 
 export default SignUpForm;

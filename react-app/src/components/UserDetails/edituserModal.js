@@ -82,7 +82,7 @@ function EditUserModal({ user }) {
               Email
               <input
                 className="updateUser-email"
-                type='text'
+                type='email' 
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 required
