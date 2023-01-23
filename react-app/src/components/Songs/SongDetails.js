@@ -126,6 +126,9 @@ console.log("USERRRR", users)
 
   const song = songData[0]
 
+  if (!users.length) {
+    return null
+  }
 
 
 return (
@@ -204,7 +207,7 @@ return (
   {
   comments.map(comment => (
       <div className='list-of-comments-song-details'>
-        <div className='posted-comment'>{comment.comment}</div>
+        <div className='posted-comment'> {userNameFinder(comment.user_id)}:  {comment.comment}</div>
         <div className='comment-edit-and-delete'>
           {userObj?.id === comment.user_id &&
           <button
