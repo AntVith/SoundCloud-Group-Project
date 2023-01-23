@@ -132,7 +132,8 @@ function User() {
                               />
                             </div>
                             <div >
-                              <button id='each-song-delete-button' onClick={() => handleDeletion(eachSong.id)}>Delete</button>
+                              {/* <button id='each-song-delete-button' onClick={() => handleDeletion(eachSong.id)}>Delete</button> */}
+                              <button className='delete-and-edit' onClick={() => handleDeletion(eachSong.id)}>Delete</button>
                             </div>
                           </div>
                         }
@@ -144,9 +145,6 @@ function User() {
                 </div>
               </NavLink>
               <Waveformtwo className='test' urlGetter={eachSong.song_file} />
-
-
-
 
             </div>
 

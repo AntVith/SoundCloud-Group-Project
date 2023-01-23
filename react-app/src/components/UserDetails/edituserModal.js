@@ -57,7 +57,7 @@ function EditUserModal({ user }) {
     <>
       <h1 className="title">Update Your Profile</h1>
       <form className="form-container" onSubmit={handleSubmit} >
-        <div >
+        <div>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -68,6 +68,7 @@ function EditUserModal({ user }) {
               <label>
                 Bio
                 <input
+                  className="updateUser-bio"
                   type='text'
                   onChange={(e) => setBio(e.target.value)}
                   value={bio}
@@ -76,10 +77,11 @@ function EditUserModal({ user }) {
                 />
               </label>
             </div>
-            <div>
+            <div >
             <label>
               Email
               <input
+                className="updateUser-email"
                 type='text'
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -90,9 +92,10 @@ function EditUserModal({ user }) {
             </label>
             </div>
             <div>
-            <label>
+            <label >
               First Name
               <input
+                className="updateUser-firstname"
                 type='text'
                 onChange={(e) => setFirst_name(e.target.value)}
                 value={first_name}
@@ -103,10 +106,11 @@ function EditUserModal({ user }) {
             </label>
             </div>
 
-            <div>
+            <div >
             <label>
               Last Name
               <input
+                className="updateUser-lastname"
                 type='text'
                 onChange={(e) => setLast_name(e.target.value)}
                 value={last_name}
@@ -118,9 +122,10 @@ function EditUserModal({ user }) {
 
             </div>
             <div>
-            <label>
+            <label >
               Profile Photo url
               <input
+                className="updateUser-url"
                 type='text'
                 onChange={(e) => setProfile_photo(e.target.value)}
                 value={profile_photo}
@@ -130,10 +135,11 @@ function EditUserModal({ user }) {
               </label>
 
             </div>
-            <div>
+            <div >
               <label>
                 Username
               <input
+                className="updateUser-username"
                 type='text'
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}

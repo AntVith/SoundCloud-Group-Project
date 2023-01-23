@@ -1,9 +1,11 @@
 #whole-profile-page{
     height:fit-content;
     align-self: center;
-    margin: 0 183px 0 120px;
+    margin: 0 120px 0 120px;
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
 }
+
+
 #userDetails-card{
 display: flex;
 flex-direction: row;
@@ -160,28 +162,31 @@ background-color: lightgrey;
     align-items: end;
     margin-left: 10px;
 }
-#each-song-edit-button{
+/* #each-song-edit-button{
     margin-right: 15px;
+} */
 
 
-}
-#actual-edit-button{
+/* #actual-edit-button{
     font-size: 15px;
     border: none;
     border-color: white;
     background-color: white;
-}
-.Edit{
+} */
+
+/* .Edit{
     font-size: 15px;
     border: 1px solid #f50;
     background-color: white;
     color: #f50;
     padding-left: 5px;
     padding-right: 5px;
-}
-#each-song-delete-button{
+} */
+
+
+/* #each-song-delete-button{
     font-size: 15px;
-    /* border: 1px solid grey; */
+    border: 1px solid grey;
     background-color: white;
     padding-left: 5px;
     padding-right: 5px;
@@ -189,7 +194,7 @@ background-color: lightgrey;
     color: grey;
     display: flex;
     justify-content: center;
-}
+} */
 
 .buttons-together{
     display: flex;
@@ -197,11 +202,3 @@ background-color: lightgrey;
     align-items: center;
     justify-content: center;
 }
-
-/* .waveform-container2{
-    flex-grow: 1;
-  }
-
-.wave{
-    border-color: #f50 solid 1px;
-} */
