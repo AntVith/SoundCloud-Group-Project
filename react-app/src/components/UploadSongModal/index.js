@@ -61,7 +61,7 @@ function UploadNewSong() {
   }
 
   return (
-
+<div className="upload-form-container-check">
     <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
     <div id='header-div'>
     <h1 className='header-upload'>Upload your tracks  here</h1>
@@ -137,7 +137,10 @@ function UploadNewSong() {
         disabled={isLoading}
         >Upload</button>
         {(imageLoading)&& <p>Loading...</p>}
+
     </form>
+
+</div>
 
 
   )
