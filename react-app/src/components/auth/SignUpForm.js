@@ -38,7 +38,7 @@ const SignUpForm = () => {
       }
 
     }else{
-      setErrors([...errors, 'Passwords do not match STOOPID'])
+      setErrors([...errors, 'Passwords do not match'])
     }
   };
 
