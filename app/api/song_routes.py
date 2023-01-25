@@ -37,6 +37,7 @@ def new_song():
         return {"errors": "photo required"}, 400
 
     print('hello')
+    
     coverphoto = request.files["coverphoto"]
     songfile = request.files["songfile"]
 
