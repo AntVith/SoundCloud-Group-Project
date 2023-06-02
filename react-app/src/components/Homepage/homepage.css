@@ -40,15 +40,9 @@
 .slider-eachsong{
   flex: 0 0 auto;
   margin-right: 10px;
-
-
-  /* border: 1px solid red; */
-  /* width: 180px;
-  height: 180px; */
 }
 
 .will-change-to-img{
-  /* border: 1px solid red; */
   object-fit: cover;
   width: 180px;
   height: 180px;
