@@ -17,7 +17,9 @@ class Song(db.Model):
 
   comments = db.relationship("Comment",cascade='all, delete-orphan', back_populates='song')
   user = db.relationship('User', back_populates='songs')
-  
+
+
+
   song_likes = db.relationship(
     "User",
     secondary=likes,
